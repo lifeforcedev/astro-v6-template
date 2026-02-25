@@ -24,6 +24,7 @@ export default defineConfig({
     }),
     mdx(),
     sitemap({
+      filter: (page) => !page.includes('/rss.xml'),
       i18n: {
         defaultLocale: 'en',
         locales: { en: 'en', de: 'de' },

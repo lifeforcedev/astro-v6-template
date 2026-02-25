@@ -29,6 +29,7 @@ export default defineConfig({
       compilerOptions: { runes: true },
     }),
     sitemap({
+      filter: (page) => !page.includes('/api/'),
       i18n: {
         defaultLocale: 'en',
         locales: { en: 'en', de: 'de' },
