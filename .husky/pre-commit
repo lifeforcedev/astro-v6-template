@@ -1,1 +1,2 @@
+npx nosecrets scan --staged
 pnpm lint-staged

@@ -92,6 +92,9 @@ importers:
       '@biomejs/biome':
         specifier: 'catalog:'
         version: 2.4.4
+      '@casoon/nosecrets':
+        specifier: ^0.1.6
+        version: 0.1.6
       '@playwright/test':
         specifier: ^1.58.2
         version: 1.58.2
@@ -404,6 +407,16 @@ packages:
     engines: {node: ^18.17.1 || ^20.3.0 || >=22.0.0}
     peerDependencies:
       astro: ^5.0.0 || ^6.0.0-beta.0 || ^6.0.0
+
+  '@casoon/nosecrets-darwin-arm64@0.1.6':
+    resolution: {integrity: sha512-K6ZYgeZrRkjg1hRZ31lFrwo/uQktAjdNRCAxWFbdv7Qa/wdbHWjbNZKSvX6Sqn64kt7y5PSFwmq8reSH7HTscA==}
+    cpu: [arm64]
+    os: [darwin]
+
+  '@casoon/nosecrets@0.1.6':
+    resolution: {integrity: sha512-xoNGTBUr+v5JR1ShhtDhlB4a7SEnGhXKK5qtbQuKzgizGDRK9paVzuF0Vm/kNe4U7ENxwHv+hJk2TrRDjJVZCw==}
+    engines: {node: '>=16'}
+    hasBin: true
 
   '@clack/core@1.0.1':
     resolution: {integrity: sha512-WKeyK3NOBwDOzagPR5H08rFk9D/WuN705yEbuZvKqlkmoLM2woKtXb10OO2k1NoSU4SFG947i2/SCYh+2u5e4g==}
@@ -3299,6 +3312,13 @@ snapshots:
     dependencies:
       astro: 6.0.0-beta.15(jiti@2.6.1)(lightningcss@1.31.1)(rollup@4.59.0)(tsx@4.21.0)(typescript@5.9.3)(yaml@2.8.2)
       picocolors: 1.1.1
+
+  '@casoon/nosecrets-darwin-arm64@0.1.6':
+    optional: true
+
+  '@casoon/nosecrets@0.1.6':
+    optionalDependencies:
+      '@casoon/nosecrets-darwin-arm64': 0.1.6
 
   '@clack/core@1.0.1':
     dependencies:
