@@ -1,5 +1,5 @@
 ---
-import { actions } from 'astro:actions';
+import { actions, isInputError } from 'astro:actions';
 import Navbar from '@astro-v6/shared/components/Navbar.astro';
 import ThemeToggle from '@astro-v6/shared/components/ThemeToggle.svelte';
 import BaseLayout from '@astro-v6/shared/layouts/BaseLayout.astro';
@@ -18,7 +18,7 @@ const links = [
 
 const result = Astro.getActionResult(actions.submitContactForm);
 const success = result && !result.error;
-const inputError = result?.error?.fields;
+const inputError = result?.error && isInputError(result.error) ? result.error.fields : undefined;
 ---
 
 <BaseLayout title={tr('contact.title')} description={tr('contact.description')} lang={locale}>

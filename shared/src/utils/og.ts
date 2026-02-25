@@ -15,7 +15,7 @@ export interface OgImageOptions {
 export async function generateOgImage(
   options: OgImageOptions,
   fontData: ArrayBuffer
-): Promise<Buffer> {
+): Promise<Uint8Array> {
   const { title, description, siteName } = options;
 
   const svg = await satori(
@@ -121,5 +121,5 @@ export async function generateOgImage(
     fitTo: { mode: 'width', value: 1200 },
   });
 
-  return Buffer.from(resvg.render().asPng());
+  return new Uint8Array(resvg.render().asPng());
 }
