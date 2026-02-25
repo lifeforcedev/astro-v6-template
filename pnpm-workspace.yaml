@@ -10,6 +10,7 @@ catalog:
   '@astrojs/mdx': ^5.0.0-beta.8
   '@astrojs/sitemap': ^3.7.0
   '@astrojs/svelte': ^8.0.0-beta.3
+  '@casoon/astro-speed-measure': ^0.2.0
 
   # Tailwind v4
   tailwindcss: ^4.2.1

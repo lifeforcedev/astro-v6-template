@@ -57,6 +57,7 @@ This template succeeds [astro-v5-template](https://github.com/casoon/astro-v5-te
 - **CSP** — Content Security Policy with SHA-256 nonces
 - **Sessions** — Server-side session management via Cloudflare KV
 - **Build Metrics** — [`@casoon/astro-speed-measure`](https://github.com/casoon/astro-speed-measure) for build performance tracking
+- **Post-Build Audit** — [`astro-post-audit`](https://github.com/casoon/astro-post-audit) for SEO, link and WCAG checks after every build
 - **Playwright** — E2E tests for both apps with axe-core a11y scanning
 - **Biome** — Single tool for linting + formatting (replaces ESLint + Prettier)
 - **Zod v4** — Runtime validation for env, forms, API
@@ -215,6 +216,24 @@ export default defineConfig({
 ```
 
 Each build prints a performance report to the console and writes a JSON baseline for trend comparisons. Supports budgets, HTML reports and GitHub Actions CI summaries.
+
+## Post-Build Audit
+
+Both apps include [`astro-post-audit`](https://github.com/casoon/astro-post-audit) for automatic SEO, link and WCAG checks after every build. It runs a fast Rust binary against the build output via the `astro:build:done` hook.
+
+```js
+// astro.config.mjs
+import postAudit from 'astro-post-audit';
+
+export default defineConfig({
+  integrations: [
+    // ... other integrations
+    postAudit(),
+  ],
+});
+```
+
+Checks include missing `<title>`, meta descriptions, canonical URLs, Open Graph tags, duplicate `<h1>`, broken internal links, sitemap validation and basic WCAG heuristics. Supports `--strict` mode, exclusion patterns and JSON output.
 
 ## Astro v6 Highlights
 

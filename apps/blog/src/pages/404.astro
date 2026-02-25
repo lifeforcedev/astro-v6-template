@@ -1,9 +1,16 @@
 ---
 import BaseLayout from '@astro-v6/shared/layouts/BaseLayout.astro';
+import PageSEO from '@astro-v6/shared/seo/PageSEO.astro';
 import '@/styles/app.css';
 ---
 
 <BaseLayout title="404 - Page Not Found" lang="en">
+  <PageSEO
+    slot="head"
+    title="404 - Page Not Found"
+    description="The page you are looking for does not exist."
+    noIndex
+  />
   <section class="px-6 py-16 text-center" role="alert">
     <h1 class="text-8xl font-black leading-none text-text-secondary">404</h1>
     <p class="my-4 mb-8 text-xl text-text-secondary">This page does not exist.</p>

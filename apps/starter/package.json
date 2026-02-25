@@ -16,7 +16,7 @@
     "@astrojs/cloudflare": "catalog:",
     "@astrojs/sitemap": "catalog:",
     "@astrojs/svelte": "catalog:",
-    "@casoon/astro-speed-measure": "^0.2.0",
+    "@casoon/astro-speed-measure": "catalog:",
     "@fontsource/inter": "catalog:",
     "@tailwindcss/vite": "catalog:",
     "astro": "catalog:",
@@ -25,6 +25,7 @@
   },
   "devDependencies": {
     "@astrojs/check": "catalog:",
+    "astro-post-audit": "^0.1.2",
     "tsx": "catalog:",
     "typescript": "catalog:",
     "wrangler": "catalog:"
