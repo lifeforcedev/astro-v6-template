@@ -42,8 +42,9 @@ Tailwind v4 is configured via CSS, not JavaScript:
 }
 ```
 
-In this project we use custom CSS custom properties from `@astro-v6/styles`
-instead — no @theme needed since tokens are referenced directly via `var()`.
+In this project we use custom CSS custom properties from `@astro-v6/shared/styles`
+and a shared `@theme` block (`shared/src/styles/theme.css`) that registers
+design tokens with Tailwind. Tokens are referenced via `var()` in component styles.
 
 ## v4 Syntax Changes (from v3)
 
@@ -120,7 +121,7 @@ We use CSS custom properties instead of Tailwind theme:
 }
 ```
 
-Available tokens (from `packages/styles/src/variables.css`):
+Available tokens (from `shared/src/styles/variables.css`):
 
 ### Colors
 - `--color-bg`, `--color-bg-secondary`, `--color-surface`

@@ -1,9 +1,0 @@
-{
-  "name": "@astro-v6/styles",
-  "version": "0.1.0",
-  "private": true,
-  "exports": {
-    "./variables": "./src/variables.css",
-    "./global": "./src/global.css"
-  }
-}

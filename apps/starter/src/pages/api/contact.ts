@@ -3,7 +3,7 @@ import {
   errorResponse,
   successResponse,
   validateRequest,
-} from '@astro-v6/utils';
+} from '@astro-v6/shared';
 import type { APIRoute } from 'astro';
 
 export const POST: APIRoute = async ({ request }) => {

@@ -4,6 +4,7 @@ node_modules/
 # Build output
 dist/
 .astro/
+.wrangler/
 
 # Environment
 .env
@@ -29,5 +30,14 @@ pnpm-debug.log*
 .cache/
 .turbo/
 
-# Image optimization output
+# Generated assets
 apps/*/public/responsive/
+apps/*/public/og/
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+
+# Build metrics
+astro-speed-measure-report.*

@@ -12,9 +12,7 @@ This template is a pnpm monorepo:
 ```
 apps/starter/    → Landing page + contact + API
 apps/blog/       → Blog with MDX + Content Collections + RSS
-packages/styles/ → Design tokens (CSS variables, OKLCH)
-packages/ui/     → Shared Astro/Svelte components
-packages/utils/  → Shared TypeScript utilities
+shared/          → Design tokens, components, layouts, SEO, utilities
 ```
 
 ## Astro v6 API (Breaking Changes from v5)
@@ -135,7 +133,7 @@ Hydration directives:
 ```typescript
 import type { APIRoute } from 'astro';
 import { z } from 'astro/zod';
-import { successResponse, errorResponse, validateRequest } from '@astro-v6/utils';
+import { successResponse, errorResponse, validateRequest } from '@astro-v6/shared';
 
 const schema = z.object({
   email: z.email(),
@@ -180,12 +178,12 @@ export default defineConfig({
 
 ```astro
 ---
-import BaseLayout from '@astro-v6/ui/layouts/BaseLayout.astro';
-import Navbar from '@astro-v6/ui/components/Navbar.astro';
-import PageSEO from '@astro-v6/ui/seo/PageSEO.astro';
-import ThemeToggle from '@astro-v6/ui/components/ThemeToggle.svelte';
-import { cn } from '@astro-v6/utils/cn';
-import { validateEnv, createEnvSchema } from '@astro-v6/utils/env';
+import BaseLayout from '@astro-v6/shared/layouts/BaseLayout.astro';
+import Navbar from '@astro-v6/shared/components/Navbar.astro';
+import PageSEO from '@astro-v6/shared/seo/PageSEO.astro';
+import ThemeToggle from '@astro-v6/shared/components/ThemeToggle.svelte';
+import { cn } from '@astro-v6/shared/utils/cn';
+import { validateEnv, createEnvSchema } from '@astro-v6/shared/utils/env';
 ---
 ```
 

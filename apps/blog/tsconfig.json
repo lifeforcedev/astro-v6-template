@@ -9,9 +9,7 @@
     "noFallthroughCasesInSwitch": true,
     "paths": {
       "@/*": ["./src/*"],
-      "@astro-v6/ui/*": ["../../packages/ui/src/*"],
-      "@astro-v6/styles/*": ["../../packages/styles/src/*"],
-      "@astro-v6/utils/*": ["../../packages/utils/src/*"]
+      "@astro-v6/shared/*": ["../../shared/src/*"]
     }
   }
 }

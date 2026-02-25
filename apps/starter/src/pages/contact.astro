@@ -1,139 +1,93 @@
 ---
-import Navbar from '@astro-v6/ui/components/Navbar.astro';
-import ThemeToggle from '@astro-v6/ui/components/ThemeToggle.svelte';
-import BaseLayout from '@astro-v6/ui/layouts/BaseLayout.astro';
-import PageSEO from '@astro-v6/ui/seo/PageSEO.astro';
+import { actions } from 'astro:actions';
+import Navbar from '@astro-v6/shared/components/Navbar.astro';
+import ThemeToggle from '@astro-v6/shared/components/ThemeToggle.svelte';
+import BaseLayout from '@astro-v6/shared/layouts/BaseLayout.astro';
+import PageSEO from '@astro-v6/shared/seo/PageSEO.astro';
+import { localePath } from '@astro-v6/shared/utils/i18n';
+import { t } from '@/i18n';
 import '@/styles/app.css';
 
+const locale = 'en';
+const tr = t(locale);
+
 const links = [
-  { href: '/', label: 'Home' },
-  { href: '/contact', label: 'Contact' },
+  { href: localePath('/', locale), label: tr('nav.home') },
+  { href: localePath('/contact', locale), label: tr('nav.contact') },
 ];
+
+const result = Astro.getActionResult(actions.submitContactForm);
+const success = result && !result.error;
+const inputError = result?.error?.fields;
 ---
 
-<BaseLayout title="Contact" description="Contact form with Zod validation and API route." lang="en">
+<BaseLayout title={tr('contact.title')} description={tr('contact.description')} lang={locale}>
   <PageSEO
     slot="head"
-    title="Contact - Astro v6 Starter"
-    description="Contact form with Zod validation and API route."
+    title={`${tr('contact.title')} - Astro v6 Starter`}
+    description={tr('contact.description')}
+    ogImage={new URL('/og/contact.png', Astro.site).href}
   />
 
   <Navbar slot="header" siteName="Astro v6" links={links}>
+    <a href="/de/contact" class="text-xs font-medium text-text-secondary hover:text-text no-underline">DE</a>
     <ThemeToggle client:load />
   </Navbar>
 
-  <section class="contact">
-    <h1>Contact</h1>
-    <p>Example contact form with server-side Zod validation.</p>
+  <section class="mx-auto max-w-xl px-6 py-12">
+    <h1 class="mb-2 text-3xl font-extrabold">{tr('contact.title')}</h1>
+    <p class="mb-8 text-text-secondary">{tr('contact.description')}</p>
 
-    <form class="contact-form" method="POST" action="/api/contact">
-      <div class="form-field">
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name" required autocomplete="name" />
+    {success && (
+      <div class="mb-6 rounded-xl bg-success/20 p-4 text-success" role="status">
+        <p>{result.data?.message}</p>
+      </div>
+    )}
+
+    <form class="flex flex-col gap-4" method="POST" action={actions.submitContactForm}>
+      <div class="flex flex-col gap-1">
+        <label for="name" class="text-sm font-semibold">{tr('contact.name')}</label>
+        <input type="text" id="name" name="name" required autocomplete="name"
+          aria-invalid={!!inputError?.name}
+          aria-describedby={inputError?.name ? 'name-error' : undefined}
+          class="rounded-md border border-border bg-surface px-3 py-2.5 text-text transition-colors focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/15" />
+        {inputError?.name && <span id="name-error" class="text-xs text-error" role="alert">{inputError.name}</span>}
       </div>
 
-      <div class="form-field">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" required autocomplete="email" />
+      <div class="flex flex-col gap-1">
+        <label for="email" class="text-sm font-semibold">{tr('contact.email')}</label>
+        <input type="email" id="email" name="email" required autocomplete="email"
+          aria-invalid={!!inputError?.email}
+          aria-describedby={inputError?.email ? 'email-error' : undefined}
+          class="rounded-md border border-border bg-surface px-3 py-2.5 text-text transition-colors focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/15" />
+        {inputError?.email && <span id="email-error" class="text-xs text-error" role="alert">{inputError.email}</span>}
       </div>
 
-      <div class="form-field">
-        <label for="subject">Subject</label>
-        <input type="text" id="subject" name="subject" required />
+      <div class="flex flex-col gap-1">
+        <label for="subject" class="text-sm font-semibold">{tr('contact.subject')}</label>
+        <input type="text" id="subject" name="subject" required
+          aria-invalid={!!inputError?.subject}
+          aria-describedby={inputError?.subject ? 'subject-error' : undefined}
+          class="rounded-md border border-border bg-surface px-3 py-2.5 text-text transition-colors focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/15" />
+        {inputError?.subject && <span id="subject-error" class="text-xs text-error" role="alert">{inputError.subject}</span>}
       </div>
 
-      <div class="form-field">
-        <label for="message">Message</label>
-        <textarea id="message" name="message" rows="5" required></textarea>
+      <div class="flex flex-col gap-1">
+        <label for="message" class="text-sm font-semibold">{tr('contact.message')}</label>
+        <textarea id="message" name="message" rows="5" required
+          aria-invalid={!!inputError?.message}
+          aria-describedby={inputError?.message ? 'message-error' : undefined}
+          class="rounded-md border border-border bg-surface px-3 py-2.5 text-text transition-colors focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/15"></textarea>
+        {inputError?.message && <span id="message-error" class="text-xs text-error" role="alert">{inputError.message}</span>}
       </div>
 
-      <button type="submit" class="btn btn-primary">Send</button>
+      <button type="submit" class="inline-flex cursor-pointer items-center justify-center rounded-md bg-accent px-6 py-3 font-semibold text-text-inverse transition-colors hover:bg-accent-hover">
+        {tr('contact.send')}
+      </button>
     </form>
   </section>
 
-  <footer slot="footer" class="site-footer">
+  <footer slot="footer" class="border-t border-border px-6 py-8 text-center text-sm text-text-secondary">
     <p>&copy; {new Date().getFullYear()} Astro v6 Starter.</p>
   </footer>
 </BaseLayout>
-
-<style>
-  .contact {
-    max-width: 40rem;
-    margin: 0 auto;
-    padding: var(--space-2xl) var(--space-lg);
-  }
-
-  .contact h1 {
-    font-size: 2rem;
-    font-weight: 800;
-    margin-bottom: var(--space-sm);
-  }
-
-  .contact > p {
-    color: var(--color-text-secondary);
-    margin-bottom: var(--space-xl);
-  }
-
-  .contact-form {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-md);
-  }
-
-  .form-field {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-xs);
-  }
-
-  .form-field label {
-    font-weight: 600;
-    font-size: 0.875rem;
-  }
-
-  .form-field input,
-  .form-field textarea {
-    padding: 0.625rem 0.75rem;
-    border: 1px solid var(--color-border);
-    border-radius: var(--input-radius);
-    background: var(--color-surface);
-    color: var(--color-text);
-    transition: border-color var(--transition-fast);
-  }
-
-  .form-field input:focus,
-  .form-field textarea:focus {
-    border-color: var(--color-accent);
-    outline: none;
-    box-shadow: 0 0 0 3px oklch(58% 0.18 220 / 0.15);
-  }
-
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.75rem 1.5rem;
-    border: none;
-    border-radius: var(--button-radius);
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color var(--transition-fast);
-  }
-
-  .btn-primary {
-    background: var(--color-accent);
-    color: var(--color-text-inverse);
-  }
-
-  .btn-primary:hover {
-    background: var(--color-accent-hover);
-  }
-
-  .site-footer {
-    text-align: center;
-    padding: var(--space-xl) var(--space-lg);
-    border-top: 1px solid var(--color-border);
-    color: var(--color-text-secondary);
-    font-size: 0.875rem;
-  }
-</style>

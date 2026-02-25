@@ -18,14 +18,14 @@ A lean, production-ready **Astro v6** monorepo template with Tailwind v4, Svelte
 
 ## Multi-Project Architecture
 
-This template uses **pnpm workspaces** with a shared `packages/` layer, making it an ideal foundation for running **multiple projects from a single repository**. Typical use cases:
+This template uses **pnpm workspaces** with a shared library, making it an ideal foundation for running **multiple projects from a single repository**. Typical use cases:
 
 - **Main site** + **Blog** (included as `starter` and `blog`)
 - **Landing pages** for campaigns or product launches
 - **Online shop** storefront
 - **Documentation** site
 
-All projects share the same design tokens, UI components and utilities — ensuring a consistent look and feel while keeping each app independently deployable. Adding a new project is as simple as creating a new folder under `apps/` and importing from `packages/`.
+All projects share the same design tokens, UI components and utilities — ensuring a consistent look and feel while keeping each app independently deployable. Adding a new project is as simple as creating a new folder under `apps/` and importing from `shared/`.
 
 ## Predecessor
 
@@ -46,14 +46,22 @@ This template succeeds [astro-v5-template](https://github.com/casoon/astro-v5-te
 
 ## Features
 
-- **Astro v6** — New dev server, Live Content Collections, CSP
+- **Astro v6** — New dev server, Live Content Collections, CSP, Sessions
 - **Tailwind v4** — CSS-first config, Vite plugin, OKLCH colors
 - **Svelte 5** — Runes API ($state, $derived) for reactive islands
+- **i18n** — Multi-language support (en/de) with Astro i18n routing
+- **OG Images** — Auto-generated Open Graph images at build time (Satori + resvg)
+- **Astro Actions** — Server-side form handling (contact, newsletter, feedback)
+- **CSP** — Content Security Policy with SHA-256 nonces
+- **Sessions** — Server-side session management via Cloudflare KV
+- **Build Metrics** — [`@casoon/astro-speed-measure`](https://github.com/casoon/astro-speed-measure) for build performance tracking
+- **Playwright** — E2E tests for both apps with axe-core a11y scanning
 - **Biome** — Single tool for linting + formatting (replaces ESLint + Prettier)
 - **Zod v4** — Runtime validation for env, forms, API
 - **pnpm Workspaces** — Monorepo with catalog for centralized dependency management
 - **Dark Mode** — System preference + manual toggle
-- **WCAG 2.1 AA** — Accessibility as a core principle
+- **SEO** — robots.txt, sitemap with i18n, canonical URLs, meta descriptions
+- **WCAG 2.1 AA** — Semantic HTML, ARIA attributes, link underlines, axe-core validation
 - **TypeScript Strict** — Fully typed throughout
 
 ## Structure
@@ -61,14 +69,15 @@ This template succeeds [astro-v5-template](https://github.com/casoon/astro-v5-te
 ```
 astro-v6-template/
 ├── apps/
-│   ├── starter/          # Landing page + contact form
-│   └── blog/             # Blog with MDX + RSS
-├── packages/
-│   ├── styles/           # Design tokens (CSS variables)
-│   ├── ui/               # Shared components
-│   └── utils/            # Shared utilities
+│   ├── starter/          # Landing page + contact form + i18n
+│   └── blog/             # Blog with MDX + RSS + i18n
+├── shared/                # Design tokens, components, layouts, SEO, utilities
+├── e2e/
+│   ├── starter/          # Playwright E2E tests for starter
+│   └── blog/             # Playwright E2E tests for blog
 ├── .github/workflows/    # CI pipeline
 ├── biome.json            # Linting & formatting
+├── playwright.config.ts  # E2E test configuration
 └── pnpm-workspace.yaml   # Workspace + catalog
 ```
 
@@ -106,6 +115,9 @@ pnpm dev:blog
 | `pnpm check` | Run Biome lint + format check |
 | `pnpm check:fix` | Biome auto-fix |
 | `pnpm format` | Format all files |
+| `pnpm test:e2e` | Run all Playwright E2E tests |
+| `pnpm test:e2e:starter` | E2E tests for starter only |
+| `pnpm test:e2e:blog` | E2E tests for blog only |
 | `pnpm type-check` | TypeScript check |
 | `pnpm clean` | Remove build artifacts + node_modules |
 
@@ -113,10 +125,13 @@ pnpm dev:blog
 
 ### Starter
 
-Minimal landing page featuring:
+Landing page featuring:
 - Hero section with feature grid
-- Contact form with Zod validation
+- Contact form with Astro Actions + Zod validation
+- Newsletter subscription and feedback actions
 - API route (`/api/contact`)
+- i18n (English + German) with language switcher
+- OG image generation per page and locale
 - Dark mode toggle
 - SEO component with JSON-LD
 
@@ -126,26 +141,78 @@ Blog template featuring:
 - MDX support
 - Content Collections (Loader API)
 - Automatic RSS feed (`/rss.xml`)
+- i18n (English + German) with language switcher
+- OG image generation per page and blog post
 - Tag display
 - Responsive post layout
 
-## Packages
+## Shared Package (`@astro-v6/shared`)
 
-### `@astro-v6/styles`
-Design tokens as CSS variables with OKLCH colors. Includes light/dark mode, spacing, typography, shadows.
+All shared code lives in `shared/`:
 
-### `@astro-v6/ui`
-Shared Astro/Svelte components:
-- `BaseLayout.astro` — HTML base structure with skip link
-- `Navbar.astro` — Responsive navigation
-- `PageSEO.astro` — Meta tags + Open Graph + JSON-LD
-- `ThemeToggle.svelte` — Dark mode toggle (Svelte 5 Runes)
+- **Styles** — Design tokens (OKLCH), global CSS, Tailwind theme
+- **Components** — `Navbar.astro`, `ThemeToggle.svelte`
+- **Layouts** — `BaseLayout.astro` (HTML base with skip link)
+- **SEO** — `PageSEO.astro` (meta tags, Open Graph, JSON-LD)
+- **Utilities** — `env.ts`, `api.ts`, `cn.ts`, `i18n.ts`, `og.ts`
 
-### `@astro-v6/utils`
-Shared utilities:
-- `env.ts` — Zod-based environment validation
-- `api.ts` — API response helpers + schemas
-- `cn.ts` — clsx + tailwind-merge utility
+## i18n
+
+Both apps support English (default) and German:
+
+- English pages at root: `/`, `/contact`, `/blog/welcome`
+- German pages with prefix: `/de/`, `/de/contact`
+- Language switcher in the navbar (EN/DE links)
+- Translation files per app in `src/i18n/`
+- Shared locale utilities in `@astro-v6/shared/utils/i18n`
+
+## OG Image Generation
+
+Open Graph images are generated at build time:
+
+```bash
+# Generate manually
+pnpm --filter starter generate:og
+pnpm --filter blog generate:og
+
+# Runs automatically before `astro build`
+pnpm build
+```
+
+- Output: `public/og/*.png` (1200x630, gitignored)
+- Blog script reads MDX frontmatter to generate post-specific images
+- All pages reference their OG image via `<PageSEO ogImage={...}>`
+
+## E2E Tests
+
+```bash
+# Run all tests (builds must exist)
+pnpm test:e2e
+
+# Run per app
+pnpm test:e2e:starter
+pnpm test:e2e:blog
+```
+
+Tests covering navigation, i18n, SEO/OG meta tags, contact form, theme toggle, RSS, accessibility (axe-core WCAG 2.1 AA), robots.txt and sitemap.
+
+## Build Performance Metrics
+
+Both apps include [`@casoon/astro-speed-measure`](https://github.com/casoon/astro-speed-measure) to track build performance. It measures integration hooks, Vite plugin timing, per-page rendering and asset processing — giving you visibility into what slows down your build.
+
+```js
+// astro.config.mjs
+import speedMeasure from '@casoon/astro-speed-measure';
+
+export default defineConfig({
+  integrations: [
+    // ... other integrations
+    speedMeasure(), // always add as last integration
+  ],
+});
+```
+
+Each build prints a performance report to the console and writes a JSON baseline for trend comparisons. Supports budgets, HTML reports and GitHub Actions CI summaries.
 
 ## Astro v6 Highlights
 
@@ -153,10 +220,11 @@ This template leverages the key features of Astro v6:
 
 - **Vite Environment API** — Dev server runs in the same runtime as production
 - **Content Collections Loader API** — `glob()` loader instead of legacy `type: 'content'`
+- **Content Security Policy** — Built-in CSP with SHA-256 nonces
+- **Sessions** — Server-side session management (Cloudflare KV)
+- **Astro Actions** — Type-safe server-side form handling
 - **Zod v4** — `z.email()`, `z.url()` as top-level functions
 - **Node 22+** — Minimum requirement
-
-For planned features, see [ROADMAP.md](./ROADMAP.md).
 
 ## License
 

@@ -1,6 +1,6 @@
 {
   "name": "astro-v6-workspace",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "description": "Astro v6 monorepo template with pnpm workspaces, Tailwind v4, Svelte 5, and Biome",
   "author": "casoon",
@@ -22,7 +22,7 @@
     "dev": "pnpm --filter @astro-v6/starter dev",
     "dev:starter": "pnpm --filter @astro-v6/starter dev",
     "dev:blog": "pnpm --filter @astro-v6/blog dev",
-    "build": "pnpm -r build",
+    "build": "pnpm build:starter && pnpm build:blog",
     "build:starter": "pnpm --filter @astro-v6/starter build",
     "build:blog": "pnpm --filter @astro-v6/blog build",
     "preview": "pnpm --filter @astro-v6/starter preview",
@@ -32,6 +32,9 @@
     "check:fix": "biome check --write .",
     "format": "biome format --write .",
     "type-check": "pnpm -r type-check",
+    "test:e2e": "playwright test",
+    "test:e2e:starter": "playwright test --project=starter",
+    "test:e2e:blog": "playwright test --project=blog",
     "clean": "pnpm -r clean && rm -rf node_modules",
     "prepare": "husky"
   },
@@ -54,7 +57,9 @@
     "biome"
   ],
   "devDependencies": {
+    "@axe-core/playwright": "^4.11.1",
     "@biomejs/biome": "catalog:",
+    "@playwright/test": "^1.58.2",
     "husky": "catalog:",
     "lint-staged": "catalog:",
     "sharp": "catalog:"

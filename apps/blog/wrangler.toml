@@ -1,0 +1,9 @@
+name = "astro-v6-blog"
+compatibility_date = "2025-12-01"
+compatibility_flags = ["nodejs_compat"]
+
+[assets]
+directory = "./dist/client"
+
+[observability]
+enabled = true

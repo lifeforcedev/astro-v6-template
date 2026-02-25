@@ -1,6 +1,6 @@
 # Roadmap
 
-## Phase 1: Foundation (current)
+## Phase 1: Foundation (complete)
 
 - [x] Monorepo structure with pnpm Workspaces + Catalog
 - [x] Shared packages: styles, ui, utils
@@ -12,13 +12,17 @@
 - [x] CLAUDE.md project guidelines
 - [x] Zod v4 integration (env, api, forms)
 
-## Phase 2: Astro v6 Stable
+## Phase 2: Astro v6 Features (complete)
 
+- [x] Add `<ClientRouter />` for view transitions
+- [x] Prefetch configuration (viewport strategy)
+- [x] Security: `checkOrigin` enabled
+- [x] Astro Actions for contact form (`astro:actions`)
+- [x] Zod v4 fix: `z.url()` top-level validator in env schema
+- [x] Content Security Policy (CSP with SHA-256)
+- [x] Astro Sessions with Cloudflare KV
 - [ ] Upgrade to Astro v6 stable (once released)
-- [ ] Enable Content Security Policy (CSP)
 - [ ] Add Live Content Collections example
-- [ ] Add `<ClientRouter />` for view transitions
-- [ ] Astro Sessions example (e.g. shopping cart demo)
 - [ ] Update catalog versions to stable releases
 
 ## Phase 3: DX & Tooling
@@ -29,18 +33,18 @@
 - [ ] Lighthouse CI integration
 - [ ] Bundle analysis script
 
-## Phase 4: Extensions
+## Phase 4: Extensions (complete)
 
-- [ ] Cloudflare Workers adapter example
-- [ ] i18n setup (en/de) with Astro v6 i18n routing
+- [x] Cloudflare Workers adapter + deployment
+- [x] i18n setup (en/de) with Astro i18n routing
+- [x] Astro Actions: contact, newsletter, feedback
+- [x] OpenGraph image generation (Satori + resvg)
 - [ ] Contact form with real backend (e.g. Resend)
-- [ ] Newsletter signup component
 - [ ] Sitemap generation (custom + @astrojs/sitemap)
-- [ ] OpenGraph image generation
 
-## Phase 5: Testing & Quality
+## Phase 5: Testing & Quality (in progress)
 
-- [ ] Playwright E2E tests for both apps
+- [x] Playwright E2E tests for both apps (28 tests)
 - [ ] Accessibility audit automation (axe-core)
 - [ ] Visual regression tests
 - [ ] Define performance budgets
@@ -62,8 +66,10 @@ Features we will integrate once they are stable:
 | Vite Environment API | Beta | Phase 1 (done) |
 | Content Collections Loader | Beta | Phase 1 (done) |
 | Zod v4 | Beta | Phase 1 (done) |
-| CSP support | Beta (stable in v6) | Phase 2 |
+| Client Router | Stable | Phase 2 (done) |
+| Prefetch | Stable | Phase 2 (done) |
+| Astro Actions | Stable | Phase 2 (done) |
+| Cloudflare Workers | Stable | Phase 4 (done) |
+| CSP support | Beta (stable in v6) | Phase 2 (done) |
+| Sessions API | Experimental | Phase 2 (done) |
 | Live Collections | Beta (stable in v6) | Phase 2 |
-| Client Router | Stable | Phase 2 |
-| Sessions API | Experimental | Phase 2 |
-| Cloudflare workerd | Beta | Phase 4 |

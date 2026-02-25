@@ -1,4 +1,4 @@
-import { createEnvSchema, validateEnv } from '@astro-v6/utils/env';
+import { createEnvSchema, validateEnv } from '@astro-v6/shared/utils/env';
 
 const envSchema = createEnvSchema({
   PUBLIC_SITE_URL: 'http://localhost:4322',
