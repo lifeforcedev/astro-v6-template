@@ -6,8 +6,8 @@ export const GET: APIRoute = async ({ session }) => {
   const visits = ((await session?.get('visits')) ?? 0) + 1;
   const lastVisit = new Date().toISOString();
 
-  await session?.set('visits', visits);
-  await session?.set('lastVisit', lastVisit);
+  session?.set('visits', visits);
+  session?.set('lastVisit', lastVisit);
 
   return new Response(JSON.stringify({ visits, lastVisit }), {
     headers: { 'Content-Type': 'application/json' },
@@ -15,7 +15,7 @@ export const GET: APIRoute = async ({ session }) => {
 };
 
 export const DELETE: APIRoute = async ({ session }) => {
-  await session?.destroy();
+  session?.destroy();
 
   return new Response(JSON.stringify({ message: 'Session destroyed' }), {
     headers: { 'Content-Type': 'application/json' },
