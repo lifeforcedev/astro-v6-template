@@ -57,7 +57,7 @@ This template succeeds [astro-v5-template](https://github.com/casoon/astro-v5-te
 - **CSP** — Content Security Policy with SHA-256 nonces
 - **Sessions** — Server-side session management via Cloudflare KV
 - **Build Metrics** — [`@casoon/astro-speed-measure`](https://github.com/casoon/astro-speed-measure) for build performance tracking
-- **Post-Build Audit** — [`astro-post-audit`](https://github.com/casoon/astro-post-audit) for SEO, link and WCAG checks after every build
+- **Post-Build Audit** — [`@casoon/astro-post-audit`](https://github.com/casoon/astro-post-audit) for SEO, link and WCAG checks after every build
 - **Playwright** — E2E tests for both apps with axe-core a11y scanning
 - **Biome** — Single tool for linting + formatting (replaces ESLint + Prettier)
 - **Zod v4** — Runtime validation for env, forms, API
@@ -219,11 +219,11 @@ Each build prints a performance report to the console and writes a JSON baseline
 
 ## Post-Build Audit
 
-Both apps include [`astro-post-audit`](https://github.com/casoon/astro-post-audit) for automatic SEO, link and WCAG checks after every build. It runs a fast Rust binary against the build output via the `astro:build:done` hook.
+Both apps include [`@casoon/astro-post-audit`](https://github.com/casoon/astro-post-audit) for automatic SEO, link and WCAG checks after every build. It runs a fast Rust binary against the build output via the `astro:build:done` hook.
 
 ```js
 // astro.config.mjs
-import postAudit from 'astro-post-audit';
+import postAudit from '@casoon/astro-post-audit';
 
 export default defineConfig({
   integrations: [
@@ -241,7 +241,7 @@ This template enforces WCAG 2.1 Level AA compliance through two complementary la
 
 ### Layer 1: Static HTML Audit (Build Time)
 
-[`astro-post-audit`](https://github.com/casoon/astro-post-audit) runs automatically after every build and checks the raw HTML output for:
+[`@casoon/astro-post-audit`](https://github.com/casoon/astro-post-audit) runs automatically after every build and checks the raw HTML output for:
 
 - Missing `alt` attributes on images
 - Empty links (`<a>` without text or aria-label)

@@ -1,13 +1,13 @@
 ---
 name: post-audit
-description: Post-build SEO/a11y audit integration using astro-post-audit. Use this skill for build audits, SEO checks, accessibility validation, and fixing audit findings.
+description: Post-build SEO/a11y audit integration using @casoon/astro-post-audit. Use this skill for build audits, SEO checks, accessibility validation, and fixing audit findings.
 ---
 
 # Post-Audit Skill
 
 ## Overview
 
-[`astro-post-audit`](https://github.com/casoon/astro-post-audit) is a fast post-build auditor for Astro sites. It runs a Rust binary against the build output and checks for SEO, link, and lightweight WCAG issues.
+[`@casoon/astro-post-audit`](https://github.com/casoon/astro-post-audit) is a fast post-build auditor for Astro sites. It runs a Rust binary against the build output and checks for SEO, link, and lightweight WCAG issues.
 
 It runs automatically after every `astro build` via the `astro:build:done` hook.
 
@@ -15,7 +15,7 @@ It runs automatically after every `astro build` via the `astro:build:done` hook.
 
 ```javascript
 // astro.config.mjs
-import postAudit from 'astro-post-audit';
+import postAudit from '@casoon/astro-post-audit';
 
 export default defineConfig({
   integrations: [
@@ -98,8 +98,8 @@ These come from `Astro.redirect()` in SSG mode. Exclude them with the `exclude` 
 The binary can also be used standalone:
 
 ```bash
-npx astro-post-audit dist/client --site https://astrov6.casoon.dev
-npx astro-post-audit dist/client --exclude "blog/index.html" --strict
+npx @casoon/astro-post-audit dist/client --site https://astrov6.casoon.dev
+npx @casoon/astro-post-audit dist/client --exclude "blog/index.html" --strict
 ```
 
 ## Binary Installation

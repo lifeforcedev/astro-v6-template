@@ -25,7 +25,7 @@
   },
   "devDependencies": {
     "@astrojs/check": "catalog:",
-    "astro-post-audit": "^0.1.2",
+    "@casoon/astro-post-audit": "catalog:",
     "tsx": "catalog:",
     "typescript": "catalog:",
     "wrangler": "catalog:"

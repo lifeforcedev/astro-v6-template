@@ -2,10 +2,10 @@ import cloudflare from '@astrojs/cloudflare';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import svelte from '@astrojs/svelte';
+import postAudit from '@casoon/astro-post-audit';
 import speedMeasure from '@casoon/astro-speed-measure';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'astro/config';
-import postAudit from 'astro-post-audit';
 
 export default defineConfig({
   site: 'https://astrov6blog.casoon.dev',
