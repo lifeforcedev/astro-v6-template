@@ -34,7 +34,7 @@ export function createEnvSchema(defaults: {
   PUBLIC_LOCALE?: string;
 }) {
   return baseEnvSchema.extend({
-    PUBLIC_SITE_URL: z.string().default(defaults.PUBLIC_SITE_URL),
+    PUBLIC_SITE_URL: z.url().default(defaults.PUBLIC_SITE_URL),
     PUBLIC_SITE_NAME: z.string().min(1).default(defaults.PUBLIC_SITE_NAME),
     PUBLIC_AUTHOR: z.string().min(1).default(defaults.PUBLIC_AUTHOR),
     PUBLIC_LOCALE: z

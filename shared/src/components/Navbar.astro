@@ -11,6 +11,11 @@ export interface Props {
 
 const { siteName, links = [] } = Astro.props;
 const currentPath = Astro.url.pathname;
+
+function normalizePath(path: string): string {
+  if (path === '/') return '/';
+  return path.endsWith('/') ? path.slice(0, -1) : path;
+}
 ---
 
 <nav
@@ -28,9 +33,14 @@ const currentPath = Astro.url.pathname;
               href={link.href}
               class:list={[
                 'text-sm font-medium text-text-secondary no-underline px-3 py-1.5 rounded-[var(--radius-lg)] transition-all duration-200 ease-[cubic-bezier(0.4,0,0.2,1)] hover:text-text hover:bg-bg-secondary hover:shadow-sm',
-                { 'text-text bg-bg-secondary shadow-sm': currentPath === link.href },
+                {
+                  'text-text bg-bg-secondary shadow-sm':
+                    normalizePath(currentPath) === normalizePath(link.href),
+                },
               ]}
-              aria-current={currentPath === link.href ? 'page' : undefined}
+              aria-current={
+                normalizePath(currentPath) === normalizePath(link.href) ? 'page' : undefined
+              }
             >
               {link.label}
             </a>

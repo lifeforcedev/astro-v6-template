@@ -4,7 +4,7 @@ import Navbar from '@astro-v6/shared/components/Navbar.astro';
 import ThemeToggle from '@astro-v6/shared/components/ThemeToggle.svelte';
 import BaseLayout from '@astro-v6/shared/layouts/BaseLayout.astro';
 import PageSEO from '@astro-v6/shared/seo/PageSEO.astro';
-import { localePath } from '@astro-v6/shared/utils/i18n';
+import { localePath, switchLocalePath } from '@astro-v6/shared/utils/i18n';
 import { t } from '@/i18n';
 import '@/styles/app.css';
 
@@ -21,6 +21,7 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
+const dePath = switchLocalePath(Astro.url.pathname, 'de');
 
 const links = [{ href: localePath('/', locale), label: tr('nav.home') }];
 ---
@@ -35,7 +36,7 @@ const links = [{ href: localePath('/', locale), label: tr('nav.home') }];
   />
 
   <Navbar slot="header" siteName="Astro v6 Blog" links={links}>
-    <a href="/de" class="text-xs font-medium text-text-secondary hover:text-text no-underline">DE</a>
+    <a href={dePath} class="text-xs font-medium text-text-secondary hover:text-text no-underline">DE</a>
     <ThemeToggle client:load />
   </Navbar>
 

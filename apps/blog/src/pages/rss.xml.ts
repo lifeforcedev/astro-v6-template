@@ -6,7 +6,10 @@ export async function GET(context: APIContext) {
     .filter((post) => !post.data.draft)
     .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
-  const site = context.site!.toString().replace(/\/$/, '');
+  const site = (context.site?.toString() ?? new URL('/', context.url).toString()).replace(
+    /\/$/,
+    ''
+  );
 
   const items = posts
     .map(
