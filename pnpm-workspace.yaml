@@ -2,6 +2,10 @@ packages:
   - 'apps/*'
   - 'shared'
 
+onlyBuiltDependencies:
+  - '@casoon/astro-post-audit'
+  - esbuild
+
 catalog:
   # Astro v6
   astro: ^6.0.0-beta.13
