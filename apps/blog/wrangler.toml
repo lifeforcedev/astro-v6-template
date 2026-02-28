@@ -4,6 +4,8 @@ compatibility_flags = ["nodejs_compat", "no_handle_cross_request_promise_resolut
 
 [assets]
 directory = "./dist/client"
+html_handling = "force-trailing-slash"
+not_found_handling = "404-page"
 
 [observability]
 enabled = true
