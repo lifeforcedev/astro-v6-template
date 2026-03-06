@@ -15,9 +15,6 @@ catalogs:
     '@astrojs/mdx':
       specifier: ^5.0.0-beta.8
       version: 5.0.0-beta.8
-    '@astrojs/sitemap':
-      specifier: ^3.7.0
-      version: 3.7.0
     '@astrojs/svelte':
       specifier: ^8.0.0-beta.3
       version: 8.0.0-beta.3
@@ -25,8 +22,8 @@ catalogs:
       specifier: ^2.3.10
       version: 2.4.4
     '@casoon/astro-post-audit':
-      specifier: ^0.1.3
-      version: 0.1.3
+      specifier: ^0.2.4
+      version: 0.2.4
     '@casoon/astro-speed-measure':
       specifier: ^0.2.0
       version: 0.2.0
@@ -119,9 +116,6 @@ importers:
       '@astrojs/mdx':
         specifier: 'catalog:'
         version: 5.0.0-beta.8(astro@6.0.0-beta.15(jiti@2.6.1)(lightningcss@1.31.1)(rollup@4.59.0)(tsx@4.21.0)(typescript@5.9.3)(yaml@2.8.2))
-      '@astrojs/sitemap':
-        specifier: 'catalog:'
-        version: 3.7.0
       '@astrojs/svelte':
         specifier: 'catalog:'
         version: 8.0.0-beta.3(astro@6.0.0-beta.15(jiti@2.6.1)(lightningcss@1.31.1)(rollup@4.59.0)(tsx@4.21.0)(typescript@5.9.3)(yaml@2.8.2))(jiti@2.6.1)(lightningcss@1.31.1)(svelte@5.53.3)(tsx@4.21.0)(typescript@5.9.3)(yaml@2.8.2)
@@ -161,7 +155,7 @@ importers:
         version: 0.9.6(prettier@3.8.1)(typescript@5.9.3)
       '@casoon/astro-post-audit':
         specifier: 'catalog:'
-        version: 0.1.3(astro@6.0.0-beta.15(jiti@2.6.1)(lightningcss@1.31.1)(rollup@4.59.0)(tsx@4.21.0)(typescript@5.9.3)(yaml@2.8.2))
+        version: 0.2.4(astro@6.0.0-beta.15(jiti@2.6.1)(lightningcss@1.31.1)(rollup@4.59.0)(tsx@4.21.0)(typescript@5.9.3)(yaml@2.8.2))
       tsx:
         specifier: 'catalog:'
         version: 4.21.0
@@ -180,9 +174,6 @@ importers:
       '@astrojs/cloudflare':
         specifier: 'catalog:'
         version: 13.0.0-beta.9(astro@6.0.0-beta.15(jiti@2.6.1)(lightningcss@1.31.1)(rollup@4.59.0)(tsx@4.21.0)(typescript@5.9.3)(yaml@2.8.2))(jiti@2.6.1)(lightningcss@1.31.1)(tsx@4.21.0)(workerd@1.20260302.0)(wrangler@4.68.1(@cloudflare/workers-types@4.20260303.0))(yaml@2.8.2)
-      '@astrojs/sitemap':
-        specifier: 'catalog:'
-        version: 3.7.0
       '@astrojs/svelte':
         specifier: 'catalog:'
         version: 8.0.0-beta.3(astro@6.0.0-beta.15(jiti@2.6.1)(lightningcss@1.31.1)(rollup@4.59.0)(tsx@4.21.0)(typescript@5.9.3)(yaml@2.8.2))(jiti@2.6.1)(lightningcss@1.31.1)(svelte@5.53.3)(tsx@4.21.0)(typescript@5.9.3)(yaml@2.8.2)
@@ -210,7 +201,7 @@ importers:
         version: 0.9.6(prettier@3.8.1)(typescript@5.9.3)
       '@casoon/astro-post-audit':
         specifier: 'catalog:'
-        version: 0.1.3(astro@6.0.0-beta.15(jiti@2.6.1)(lightningcss@1.31.1)(rollup@4.59.0)(tsx@4.21.0)(typescript@5.9.3)(yaml@2.8.2))
+        version: 0.2.4(astro@6.0.0-beta.15(jiti@2.6.1)(lightningcss@1.31.1)(rollup@4.59.0)(tsx@4.21.0)(typescript@5.9.3)(yaml@2.8.2))
       tsx:
         specifier: 'catalog:'
         version: 4.21.0
@@ -289,9 +280,6 @@ packages:
   '@astrojs/prism@4.0.0-beta.2':
     resolution: {integrity: sha512-3snR85nTXnXvgmFJ43AacCQcylk+mpsiQ5Gmr9hcR5IrEA6+EvaYfaF9jlxZqJIZYey/9ubSRmaERtwDhV/FeA==}
     engines: {node: ^20.19.1 || >=22.12.0}
-
-  '@astrojs/sitemap@3.7.0':
-    resolution: {integrity: sha512-+qxjUrz6Jcgh+D5VE1gKUJTA3pSthuPHe6Ao5JCxok794Lewx8hBFaWHtOnN0ntb2lfOf7gvOi9TefUswQ/ZVA==}
 
   '@astrojs/svelte@8.0.0-beta.3':
     resolution: {integrity: sha512-0+qa5Fp+y56OVOnIwjH23mgQzniB94ax+54XuxmdPzFY5sZwbzkswvq3JSWzPoty3q0V54DKoeNLDY/YQDUvkg==}
@@ -390,17 +378,13 @@ packages:
     resolution: {integrity: sha512-VERIM64vtTP1C4mxQ5thVT9fK0apjPFobqybMtA1UdUujWka24ERHbRHFGmpbbhp73MhV+KSsHQH9C6uOTdEQA==}
     engines: {node: '>=18'}
 
-  '@casoon/astro-post-audit@0.1.3':
-    resolution: {integrity: sha512-FYY37enz5fkhopxLORiC5zNoZmcmL3ClCst9JDo4Hjx6Z9eweq0OH9w9orKXx4wTECDa21P+xMK7tg88asFnoA==}
+  '@casoon/astro-post-audit@0.2.4':
+    resolution: {integrity: sha512-LZFlzRC6bBXaJWvcKxQzhphie8A8pQHoYDaTeJsSWKgl+LSKckyhwl05HPvYX4hP/uY3opxyjG/4npfk7Od0Sg==}
     engines: {node: '>=18'}
-    cpu: [x64, arm64]
     os: [darwin, linux, win32]
     hasBin: true
     peerDependencies:
-      astro: ^5.0.0 || ^6.0.0-beta.0 || ^6.0.0
-    peerDependenciesMeta:
-      astro:
-        optional: true
+      astro: ^5.0.0 || ^6.0.0-beta.0
 
   '@casoon/astro-speed-measure@0.2.0':
     resolution: {integrity: sha512-JQTHC6tVKysz4z6iwc0ED07WWUEBZSj3/psgqf0AB8OYLBBPpWeibZsmJ3yniKcIVX9OmwWJF61lphWZo0ITwQ==}
@@ -1383,12 +1367,6 @@ packages:
   '@types/nlcst@2.0.3':
     resolution: {integrity: sha512-vSYNSDe6Ix3q+6Z7ri9lyWqgGhJTmzRjZRqyq15N0Z/1/UnVsno9G/N40NBijoYx2seFDIl0+B2mgAb9mezUCA==}
 
-  '@types/node@17.0.45':
-    resolution: {integrity: sha512-w+tIMs3rq2afQdsPJlODhoUEKzFP1ayaoyl1CcnwtIlsVe7K7bA1NGm4s3PraqTLlXnbIN84zuBlxBWo1u9BLw==}
-
-  '@types/sax@1.2.7':
-    resolution: {integrity: sha512-rO73L89PJxeYM3s3pPPjiPgVVcymqU490g0YO5n5By0k2Erzj6tay/4lr1CHAAU4JyOWd1rpQ8bCf6cZfHU96A==}
-
   '@types/trusted-types@2.0.7':
     resolution: {integrity: sha512-ScaPdn1dQczgbl0QFTeTOmVHFULt394XJgOQNoyVhZ6r2vLnMLJfBPd53SB52T/3G36VI1/g2MZaX0cwDuXsfw==}
 
@@ -1471,9 +1449,6 @@ packages:
   anymatch@3.1.3:
     resolution: {integrity: sha512-KMReFUr0B4t+D+OBkjR3KYqvocp2XaSzO55UcB6mgQMd3KbcE+mWTyvVV7D/zsdEbNnV6acZUutkiHQXvTr1Rw==}
     engines: {node: '>= 8'}
-
-  arg@5.0.2:
-    resolution: {integrity: sha512-PYjyFOLKQ9y57JvQ6QLo8dAgNqswh8M1RMJYdQduT6xbWSgK36P/Z/v+p888pM69jMMfS8Xd8F6I1kQ/I9HUGg==}
 
   argparse@2.0.1:
     resolution: {integrity: sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q==}
@@ -2573,11 +2548,6 @@ packages:
   sisteransi@1.0.5:
     resolution: {integrity: sha512-bLGGlR1QxBcynn2d5YmDX4MGjlZvy2MRBDRNHLJ8VI6l6+9FUiyTFNJ0IveOSP0bcXgVDPRcfGqA0pjaqUpfVg==}
 
-  sitemap@8.0.2:
-    resolution: {integrity: sha512-LwktpJcyZDoa0IL6KT++lQ53pbSrx2c9ge41/SeLTyqy2XUNA6uR4+P9u5IVo5lPeL2arAcOKn1aZAxoYbCKlQ==}
-    engines: {node: '>=14.0.0', npm: '>=6.0.0'}
-    hasBin: true
-
   slice-ansi@7.1.2:
     resolution: {integrity: sha512-iOBWFgUX7caIZiuutICxVgX1SdxwAVFFKwt1EvMYYec/NWO5meOJ6K5uQxhrYBdQJne4KxiqZc+KptFOWFSI9w==}
     engines: {node: '>=18'}
@@ -2596,9 +2566,6 @@ packages:
 
   space-separated-tokens@2.0.2:
     resolution: {integrity: sha512-PEGlAwrG8yXGXRjW32fGbg66JAlOAwbObuqVoJpv/mRgoWDQfgH1wDPvtzWyUSNAXBGSk8h755YDbbcEy3SH2Q==}
-
-  stream-replace-string@2.0.0:
-    resolution: {integrity: sha512-TlnjJ1C0QrmxRNrON00JvaFFlNh5TTG00APw23j74ET7gkQpTASi6/L2fuiav8pzK715HXtUeClpBTw2NPSn6w==}
 
   string-argv@0.3.2:
     resolution: {integrity: sha512-aqD2Q0144Z+/RqG52NeHEkZauTAUWJO8c6yTftGJKO3Tja5tUgIfmIl6kExvhtxSDP7fXB6DvzkfMpCd/F3G+Q==}
@@ -3075,9 +3042,6 @@ packages:
   zimmerframe@1.1.4:
     resolution: {integrity: sha512-B58NGBEoc8Y9MWWCQGl/gq9xBCe4IiKM0a2x7GZdQKOW5Exr8S1W24J6OgM1njK8xCRGvAJIL/MxXHf6SkmQKQ==}
 
-  zod@3.25.76:
-    resolution: {integrity: sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ==}
-
   zod@4.3.6:
     resolution: {integrity: sha512-rftlrkhHZOcjDwkGlnUtZZkvaPHCsDATp4pGpuOOMDaTdDDXF91wuVDJoWoPsKX/3YPQ5fHuF3STjcYyKr+Qhg==}
 
@@ -3202,12 +3166,6 @@ snapshots:
     dependencies:
       prismjs: 1.30.0
 
-  '@astrojs/sitemap@3.7.0':
-    dependencies:
-      sitemap: 8.0.2
-      stream-replace-string: 2.0.0
-      zod: 3.25.76
-
   '@astrojs/svelte@8.0.0-beta.3(astro@6.0.0-beta.15(jiti@2.6.1)(lightningcss@1.31.1)(rollup@4.59.0)(tsx@4.21.0)(typescript@5.9.3)(yaml@2.8.2))(jiti@2.6.1)(lightningcss@1.31.1)(svelte@5.53.3)(tsx@4.21.0)(typescript@5.9.3)(yaml@2.8.2)':
     dependencies:
       '@sveltejs/vite-plugin-svelte': 6.2.4(svelte@5.53.3)(vite@7.3.1(jiti@2.6.1)(lightningcss@1.31.1)(tsx@4.21.0)(yaml@2.8.2))
@@ -3304,8 +3262,8 @@ snapshots:
     dependencies:
       fontkitten: 1.0.2
 
-  '@casoon/astro-post-audit@0.1.3(astro@6.0.0-beta.15(jiti@2.6.1)(lightningcss@1.31.1)(rollup@4.59.0)(tsx@4.21.0)(typescript@5.9.3)(yaml@2.8.2))':
-    optionalDependencies:
+  '@casoon/astro-post-audit@0.2.4(astro@6.0.0-beta.15(jiti@2.6.1)(lightningcss@1.31.1)(rollup@4.59.0)(tsx@4.21.0)(typescript@5.9.3)(yaml@2.8.2))':
+    dependencies:
       astro: 6.0.0-beta.15(jiti@2.6.1)(lightningcss@1.31.1)(rollup@4.59.0)(tsx@4.21.0)(typescript@5.9.3)(yaml@2.8.2)
 
   '@casoon/astro-speed-measure@0.2.0(astro@6.0.0-beta.15(jiti@2.6.1)(lightningcss@1.31.1)(rollup@4.59.0)(tsx@4.21.0)(typescript@5.9.3)(yaml@2.8.2))':
@@ -4028,12 +3986,6 @@ snapshots:
     dependencies:
       '@types/unist': 3.0.3
 
-  '@types/node@17.0.45': {}
-
-  '@types/sax@1.2.7':
-    dependencies:
-      '@types/node': 17.0.45
-
   '@types/trusted-types@2.0.7': {}
 
   '@types/unist@2.0.11': {}
@@ -4127,8 +4079,6 @@ snapshots:
     dependencies:
       normalize-path: 3.0.0
       picomatch: 2.3.1
-
-  arg@5.0.2: {}
 
   argparse@2.0.1: {}
 
@@ -5757,13 +5707,6 @@ snapshots:
 
   sisteransi@1.0.5: {}
 
-  sitemap@8.0.2:
-    dependencies:
-      '@types/node': 17.0.45
-      '@types/sax': 1.2.7
-      arg: 5.0.2
-      sax: 1.4.4
-
   slice-ansi@7.1.2:
     dependencies:
       ansi-styles: 6.2.3
@@ -5776,8 +5719,6 @@ snapshots:
   source-map@0.7.6: {}
 
   space-separated-tokens@2.0.2: {}
-
-  stream-replace-string@2.0.0: {}
 
   string-argv@0.3.2: {}
 
@@ -6225,8 +6166,6 @@ snapshots:
       youch-core: 0.3.3
 
   zimmerframe@1.1.4: {}
-
-  zod@3.25.76: {}
 
   zod@4.3.6: {}
 

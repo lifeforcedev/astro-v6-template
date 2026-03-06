@@ -1,19 +1,28 @@
 ---
 import BaseLayout from '@astro-v6/shared/layouts/BaseLayout.astro';
 import PageSEO from '@astro-v6/shared/seo/PageSEO.astro';
+import { t } from '@/i18n';
 import '@/styles/app.css';
+
+const locale = 'en';
+const tr = t(locale);
 ---
 
-<BaseLayout title="404 - Page Not Found" lang="en">
+<BaseLayout title={tr('404.title')} lang={locale}>
   <PageSEO
     slot="head"
-    title="404 - Page Not Found"
-    description="The page you are looking for does not exist."
+    title={tr('404.title')}
+    description={tr('404.text')}
     noIndex
   />
-  <section class="px-6 py-16 text-center" role="alert">
-    <h1 class="text-8xl font-black leading-none text-text-secondary">404</h1>
-    <p class="my-4 mb-8 text-xl text-text-secondary">This page does not exist.</p>
-    <a href="/" class="font-semibold">&larr; Back to home</a>
-  </section>
+  <div class="flex min-h-[60vh] items-center justify-center px-6" role="alert">
+    <div class="max-w-xl text-center">
+      <p class="mb-4 text-6xl font-light text-text-secondary">404</p>
+      <h1 class="mb-4 text-2xl font-bold md:text-3xl">{tr('404.title')}</h1>
+      <p class="mb-8 text-lg text-text-secondary">{tr('404.text')}</p>
+      <a href="/" class="inline-block rounded-lg bg-accent px-6 py-3 text-sm font-medium text-white no-underline transition-colors hover:bg-accent/90">
+        &larr; {tr('404.back')}
+      </a>
+    </div>
+  </div>
 </BaseLayout>

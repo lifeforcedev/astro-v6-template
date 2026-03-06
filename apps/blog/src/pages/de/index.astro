@@ -41,7 +41,7 @@ const links = [{ href: localePath('/', locale), label: tr('nav.home') }];
     <ul class="flex list-none flex-col gap-4 p-0" role="list">
       {posts.map((post) => (
         <li>
-          <a href={`/blog/${post.id}`} class="block rounded-xl border border-border bg-surface p-8 no-underline text-inherit transition-all hover:border-accent hover:shadow-md">
+          <a href={`/de/blog/${post.id}`} class="block rounded-xl border border-border bg-surface p-8 no-underline text-inherit transition-all hover:border-accent hover:shadow-md">
             <time datetime={post.data.date.toISOString()} class="mb-1 block text-xs text-text-secondary">
               {post.data.date.toLocaleDateString('de-DE', { year: 'numeric', month: 'long', day: 'numeric' })}
             </time>
