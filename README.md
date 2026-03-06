@@ -63,7 +63,8 @@ This template succeeds [astro-v5-template](https://github.com/casoon/astro-v5-te
 - **Zod v4** — Runtime validation for env, forms, API
 - **pnpm Workspaces** — Monorepo with catalog for centralized dependency management
 - **Dark Mode** — System preference + manual toggle
-- **SEO** — robots.txt, sitemap with i18n, canonical URLs, meta descriptions
+- **Custom Sitemap** — Own `createSitemapRoute()` utility generating `/sitemap.xml` with i18n and blog support (no `@astrojs/sitemap` needed)
+- **SEO** — robots.txt, canonical URLs, meta descriptions, JSON-LD
 - **WCAG 2.1 AA** — Two-layer accessibility: axe-core runtime checks + static HTML audit
 - **TypeScript Strict** — Fully typed throughout
 
@@ -221,19 +222,74 @@ Each build prints a performance report to the console and writes a JSON baseline
 
 Both apps include [`@casoon/astro-post-audit`](https://github.com/casoon/astro-post-audit) for automatic SEO, link and WCAG checks after every build. It runs a fast Rust binary against the build output via the `astro:build:done` hook.
 
+The template ships with comprehensive rules enabled out of the box:
+
 ```js
 // astro.config.mjs
-import postAudit from '@casoon/astro-post-audit';
+postAudit({
+  throwOnError: false,
+  rules: {
+    filters: { exclude: ['404.html'] },
+    canonical: { self_reference: true },
+    headings: { no_skip: true },
+    html_basics: { meta_description_required: true },
+    opengraph: {
+      require_og_title: true,
+      require_og_description: true,
+      require_og_image: true,
+    },
+    a11y: {
+      require_skip_link: true,
+      require_img_alt: true,
+      require_button_text: true,
+      require_label: true,
+    },
+    links: { check_fragments: true },
+    sitemap: {
+      require: true,
+      canonical_must_be_in_sitemap: true,
+      entries_must_exist_in_dist: true,
+    },
+    security: { check_target_blank: true },
+    hreflang: {
+      check_hreflang: true,
+      require_x_default: true,
+      require_self_reference: true,
+      require_reciprocal: true,
+    },
+  },
+}),
+```
 
-export default defineConfig({
-  integrations: [
-    // ... other integrations
-    postAudit(),
-  ],
+Checks include canonical URLs, meta descriptions, Open Graph tags, heading hierarchy, broken links with fragment validation, sitemap cross-referencing, `target="_blank"` security, hreflang reciprocal validation and WCAG heuristics (skip link, alt text, button text, form labels). Set `throwOnError: true` for strict CI enforcement.
+
+## Custom Sitemap
+
+This template uses a custom `createSitemapRoute()` utility instead of `@astrojs/sitemap`. The official plugin generates a `sitemap-index.xml`, which search engines don't discover at the standard `/sitemap.xml` path. The custom route generates a proper `/sitemap.xml` directly.
+
+```ts
+// src/pages/sitemap.xml.ts
+import { getCollection } from 'astro:content';
+import { createSitemapRoute } from '@astro-v6/shared/utils/sitemap';
+
+const pageModules = import.meta.glob('./**/*.astro', { eager: true });
+
+export const GET = createSitemapRoute({
+  siteUrl: import.meta.env.SITE,
+  pageModules,
+  getBlogPosts: () => getCollection('blog'),
+  blogPrefix: '/blog',
+  locales: ['de'],
+  exclude: ['/blog/'],   // exclude redirect-only pages
 });
 ```
 
-Checks include missing `<title>`, meta descriptions, canonical URLs, Open Graph tags, duplicate `<h1>`, broken internal links, sitemap validation and basic WCAG heuristics. Supports `--strict` mode, exclusion patterns and JSON output.
+Features:
+- Scans `.astro` page modules automatically (skips 404, API routes, dynamic routes)
+- Blog posts from Content Collections with per-post `<lastmod>`
+- Localized URLs for all configured locales
+- Configurable exclusion patterns
+- Priority and changefreq based on page type (homepage > contact > blog posts)
 
 ## Accessibility (WCAG 2.1 AA)
 

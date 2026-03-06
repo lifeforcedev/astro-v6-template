@@ -22,8 +22,8 @@ catalogs:
       specifier: ^2.3.10
       version: 2.4.4
     '@casoon/astro-post-audit':
-      specifier: ^0.2.4
-      version: 0.2.4
+      specifier: ^0.2.5
+      version: 0.2.5
     '@casoon/astro-speed-measure':
       specifier: ^0.2.0
       version: 0.2.0
@@ -155,7 +155,7 @@ importers:
         version: 0.9.6(prettier@3.8.1)(typescript@5.9.3)
       '@casoon/astro-post-audit':
         specifier: 'catalog:'
-        version: 0.2.4(astro@6.0.0-beta.15(jiti@2.6.1)(lightningcss@1.31.1)(rollup@4.59.0)(tsx@4.21.0)(typescript@5.9.3)(yaml@2.8.2))
+        version: 0.2.5(astro@6.0.0-beta.15(jiti@2.6.1)(lightningcss@1.31.1)(rollup@4.59.0)(tsx@4.21.0)(typescript@5.9.3)(yaml@2.8.2))
       tsx:
         specifier: 'catalog:'
         version: 4.21.0
@@ -201,7 +201,7 @@ importers:
         version: 0.9.6(prettier@3.8.1)(typescript@5.9.3)
       '@casoon/astro-post-audit':
         specifier: 'catalog:'
-        version: 0.2.4(astro@6.0.0-beta.15(jiti@2.6.1)(lightningcss@1.31.1)(rollup@4.59.0)(tsx@4.21.0)(typescript@5.9.3)(yaml@2.8.2))
+        version: 0.2.5(astro@6.0.0-beta.15(jiti@2.6.1)(lightningcss@1.31.1)(rollup@4.59.0)(tsx@4.21.0)(typescript@5.9.3)(yaml@2.8.2))
       tsx:
         specifier: 'catalog:'
         version: 4.21.0
@@ -378,9 +378,10 @@ packages:
     resolution: {integrity: sha512-VERIM64vtTP1C4mxQ5thVT9fK0apjPFobqybMtA1UdUujWka24ERHbRHFGmpbbhp73MhV+KSsHQH9C6uOTdEQA==}
     engines: {node: '>=18'}
 
-  '@casoon/astro-post-audit@0.2.4':
-    resolution: {integrity: sha512-LZFlzRC6bBXaJWvcKxQzhphie8A8pQHoYDaTeJsSWKgl+LSKckyhwl05HPvYX4hP/uY3opxyjG/4npfk7Od0Sg==}
+  '@casoon/astro-post-audit@0.2.5':
+    resolution: {integrity: sha512-we/Uid1sVbq5nKCt0BiB2CU3ws2e34jYsx85dLuBqG6JdfjdufCjlUn1HgORoKFI4g1I5UDmt8PpvA/u234zVw==}
     engines: {node: '>=18'}
+    cpu: [x64, arm64]
     os: [darwin, linux, win32]
     hasBin: true
     peerDependencies:
@@ -3262,7 +3263,7 @@ snapshots:
     dependencies:
       fontkitten: 1.0.2
 
-  '@casoon/astro-post-audit@0.2.4(astro@6.0.0-beta.15(jiti@2.6.1)(lightningcss@1.31.1)(rollup@4.59.0)(tsx@4.21.0)(typescript@5.9.3)(yaml@2.8.2))':
+  '@casoon/astro-post-audit@0.2.5(astro@6.0.0-beta.15(jiti@2.6.1)(lightningcss@1.31.1)(rollup@4.59.0)(tsx@4.21.0)(typescript@5.9.3)(yaml@2.8.2))':
     dependencies:
       astro: 6.0.0-beta.15(jiti@2.6.1)(lightningcss@1.31.1)(rollup@4.59.0)(tsx@4.21.0)(typescript@5.9.3)(yaml@2.8.2)
 
