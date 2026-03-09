@@ -134,3 +134,4 @@ Detailed development guidelines are available as skills under `.claude/skills/`:
 - **biome** — Lint/format config, pre-commit hooks, known quirks
 - **mdx-content** — Content Collections, Loader API, blog posts, RSS
 - **seo** — OG images, PageSEO component, sitemap, robots.txt, JSON-LD
+- **local-business-seo** — LocalBusiness JSON-LD, geo meta tags, areaServed, regionale Keywords
