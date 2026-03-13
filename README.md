@@ -68,6 +68,8 @@ This template succeeds [astro-v5-template](https://github.com/casoon/astro-v5-te
 - **WCAG 2.1 AA** — Two-layer accessibility: axe-core runtime checks + static HTML audit
 - **TypeScript Strict** — Fully typed throughout
 
+> **Tip:** For additional ready-made Tailwind v4 components (buttons, cards, modals, navigation and more), check out [webspire.de](https://www.webspire.de) — a component library built on Tailwind v4 that pairs well with this template.
+
 ## Structure
 
 ```
