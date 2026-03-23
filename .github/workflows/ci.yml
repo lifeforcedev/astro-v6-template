@@ -6,9 +6,6 @@ on:
   pull_request:
     branches: [main, master]
 
-env:
-  PNPM_VERSION: "10.32.1"
-
 jobs:
   ci:
     name: Quality & Build
@@ -16,15 +13,14 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup Node.js with Volta
         uses: volta-cli/action@v4
 
       - name: Setup pnpm
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@v5
         with:
-          version: ${{ env.PNPM_VERSION }}
           run_install: false
 
       - name: Get pnpm store directory
@@ -33,7 +29,7 @@ jobs:
           echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
 
       - name: Setup pnpm cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ${{ env.STORE_PATH }}
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
