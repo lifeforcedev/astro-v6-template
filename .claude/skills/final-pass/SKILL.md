@@ -27,6 +27,7 @@ Trigger this skill when the task involves any of the following:
 4. Verify mobile quality
 5. Verify self-hosted fonts only
 6. Verify build-time and E2E quality gates
+7. Verify performance basics (render-blocking, image optimization, lazy loading)
 
 ## Required checks
 
@@ -90,6 +91,34 @@ Use Playwright where practical and prefer evidence over assumption.
 
 Use the existing project font setup as the default pattern.
 
+### Performance
+
+Check for common PageSpeed issues that are detectable from code:
+
+#### Images
+- LCP image (first visible hero/teaser image) has `fetchpriority="high"`
+- LCP image does NOT have `loading="lazy"`
+- `sizes` attribute reflects actual display dimensions, not viewport width
+- Below-the-fold images have `loading="lazy"`
+- No oversized images served (e.g., 756w for a 380px slot)
+
+#### CSS
+- No duplicate `@font-face` declarations across imported stylesheets
+- No duplicate utility class definitions across CSS files
+- Font files use `font-display: swap`
+- Consider font subsetting when font files exceed 50 KiB
+
+#### JavaScript and data
+- Large data files (search indices, JSON) are lazy-loaded on interaction, not on page load
+- No unnecessary scripts in the critical path
+- Third-party scripts (analytics, tracking) loaded via server-side injection (e.g., Zaraz) or deferred
+
+#### Resource hints
+- `<link rel="preconnect">` for critical third-party origins
+- No preloading of resources that are not used on the current page
+
+This is a recommended check, not a hard blocker. Report findings with estimated impact.
+
 ### Post-audit
 - run the build path that triggers `@casoon/astro-post-audit`
 - treat audit findings as real issues unless clearly identified as false positives
@@ -114,10 +143,11 @@ Use the `playwright` skill for project test conventions.
 5. Prefer a custom sitemap route or shared utility over a sitemap plugin
 6. Verify OG image coverage and generation
 7. Verify fonts are local
-8. Build the relevant app and review post-audit findings
-9. Run or update Playwright checks
-10. Review mobile behavior
-11. Report blockers first, then medium-risk issues, then optional improvements
+8. Check performance basics (images, CSS, lazy loading)
+9. Build the relevant app and review post-audit findings
+10. Run or update Playwright checks
+11. Review mobile behavior
+12. Report blockers first, then medium-risk issues, then optional improvements
 
 ## Output expectations
 
