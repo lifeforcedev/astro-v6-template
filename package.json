@@ -72,6 +72,6 @@
     "sharp": "catalog:"
   },
   "dependencies": {
-    "@webspire/mcp": "0.8.1"
+    "@webspire/mcp": "0.10.0"
   }
 }

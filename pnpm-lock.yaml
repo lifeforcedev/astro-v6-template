@@ -84,8 +84,8 @@ importers:
   .:
     dependencies:
       '@webspire/mcp':
-        specifier: 0.8.1
-        version: 0.8.1
+        specifier: 0.10.0
+        version: 0.10.0
     devDependencies:
       '@axe-core/playwright':
         specifier: 'catalog:'
@@ -1366,8 +1366,8 @@ packages:
   '@vscode/l10n@0.0.18':
     resolution: {integrity: sha512-KYSIHVmslkaCDyw013pphY+d7x1qV8IZupYfeIfzNA+nsaWHbn5uPuQRvdRFsa9zFzGeudPuoGoZ1Op4jrJXIQ==}
 
-  '@webspire/mcp@0.8.1':
-    resolution: {integrity: sha512-IIh41dQbaVfCcx9AxVyZP1goroZCUHKCyJCXPKKnUt+1lXR7jeCRr6n3bF4my0tysAXKCT3E1xzOsl1Zttytew==}
+  '@webspire/mcp@0.10.0':
+    resolution: {integrity: sha512-CZtNRXbTYcTzKAOl/O0y0cTF9kbPmWQGvndwq44tjeTtHxtaF1agjZ0skmKzdQMyhMx/QPkqTHqoC1sjDQFrVA==}
     engines: {node: '>=22.12.0'}
     hasBin: true
 
@@ -4308,7 +4308,7 @@ snapshots:
 
   '@vscode/l10n@0.0.18': {}
 
-  '@webspire/mcp@0.8.1':
+  '@webspire/mcp@0.10.0':
     dependencies:
       '@modelcontextprotocol/sdk': 1.27.1(zod@4.3.6)
       zod: 4.3.6
