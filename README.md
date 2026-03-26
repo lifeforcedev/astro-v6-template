@@ -8,7 +8,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.9.3-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Biome](https://img.shields.io/badge/Biome-2.4.8-60A5FA?logo=biome&logoColor=white)](https://biomejs.dev)
 [![Zod](https://img.shields.io/badge/Zod-4.3.6-3068B7?logo=zod&logoColor=white)](https://zod.dev)
-[![pnpm](https://img.shields.io/badge/pnpm-10.32.1-F69220?logo=pnpm&logoColor=white)](https://pnpm.io/)
+[![pnpm](https://img.shields.io/badge/pnpm-10.33.0-F69220?logo=pnpm&logoColor=white)](https://pnpm.io/)
 [![nosecrets](https://img.shields.io/badge/nosecrets-0.3.6-4B32C3?logo=gnuprivacyguard&logoColor=white)](https://www.npmjs.com/package/@casoon/nosecrets)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 <!-- BADGES:END -->
