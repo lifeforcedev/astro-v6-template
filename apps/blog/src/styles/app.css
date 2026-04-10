@@ -8,4 +8,5 @@
 @import "@fontsource/lora/latin-700.css";
 @import "@fontsource/fira-code/latin-400.css";
 
+/* Scan shared package for Tailwind classes (no alias support, must be relative) */
 @source "../../../../shared/src";
