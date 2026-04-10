@@ -166,6 +166,69 @@ With Tailwind utilities:
 <div class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
 ```
 
+## Tailwind v4.2 — New Features
+
+### Font Feature Utilities
+
+New classes for OpenType font features (v4.2):
+
+```html
+<!-- Ligatures -->
+<code class="font-variant-[ligatures_contextual]">fn() => {}</code>
+
+<!-- Tabular numbers (for tables, code) -->
+<td class="tabular-nums">1,234.56</td>
+
+<!-- Small Caps -->
+<span class="small-caps">Section Title</span>
+```
+
+In this project: font features for `code/pre` and headings are applied globally in `shared/src/styles/global.css` — Fira Code gets ligatures and tabular numbers automatically.
+
+### New Neutral Color Palettes
+
+v4.2 ships four new built-in neutral scales alongside `gray`, `slate`, `zinc`, `stone`:
+
+| Name | Tone | Best for |
+|---|---|---|
+| `mauve` | Warm violet-gray | Modern UI, soft SaaS |
+| `taupe` | Warm brown-gray | Business, premium |
+| `olive` | Muted green-gray | Nature, sustainability |
+| `mist` | Cool blue-gray | Dashboards, data |
+
+Usage — no config needed, works like any Tailwind color:
+```html
+<div class="bg-mist-50 dark:bg-mist-950 text-taupe-900">
+```
+
+These complement the project's OKLCH design tokens. Use them for backgrounds, borders, or accent elements without creating custom tokens.
+
+### Logical Properties (i18n-ready)
+
+v4.2 completes logical CSS property support. Relevant for EN/DE i18n and future RTL support:
+
+```html
+<!-- Physical (avoid for new code) -->
+<div class="pl-4 pr-4 mt-2 mb-2">
+
+<!-- Logical (preferred) -->
+<div class="ps-4 pe-4 mt-2 mb-2">
+<!--        ↑ inline-start ↑ inline-end -->
+```
+
+Key logical utilities:
+- `ps-*` / `pe-*` → `padding-inline-start/end`
+- `ms-*` / `me-*` → `margin-inline-start/end`
+- `border-s-*` / `border-e-*` → `border-inline-start/end`
+
+Physical `pt-/pb-/mt-/mb-` remain unchanged (block axis is less ambiguous).
+
+**Note:** Existing components use physical properties — migration is optional. Apply logical utilities for new components, especially in shared layouts.
+
+### Webpack Plugin
+
+`@tailwindcss/webpack` is now first-class. Not relevant for this project (Vite/Astro).
+
 ## Best Practices
 
 1. **Design tokens for everything** - `var(--color-*)` instead of hardcoded values

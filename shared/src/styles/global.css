@@ -51,6 +51,29 @@
     overflow-wrap: break-word;
   }
 
+  /* Font features (Tailwind v4.2) */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-kerning: normal;
+    font-variant-ligatures: common-ligatures;
+  }
+
+  code,
+  pre,
+  kbd {
+    /* Fira Code: enable programming ligatures and contextual alternates */
+    font-variant-ligatures: common-ligatures contextual;
+    font-feature-settings:
+      "liga" 1,
+      "calt" 1;
+    /* Tabular numbers for alignment in code */
+    font-variant-numeric: tabular-nums;
+  }
+
   a {
     color: var(--color-accent);
     text-decoration: underline;

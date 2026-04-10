@@ -10,9 +10,9 @@ onlyBuiltDependencies:
 
 catalog:
   # Astro v6 (stable)
-  astro: ^6.1.1
+  astro: ^6.1.5
   "@astrojs/check": ^0.9.8
-  "@astrojs/cloudflare": ^13.1.4
+  "@astrojs/cloudflare": ^13.1.8
   "@astrojs/mdx": ^5.0.3
   "@astrojs/svelte": ^8.0.4
   "@axe-core/playwright": ^4.11.1
@@ -25,7 +25,7 @@ catalog:
   "@tailwindcss/vite": ^4.2.2
 
   # Svelte 5
-  svelte: ^5.54.1
+  svelte: ^5.55.2
   "@sveltejs/vite-plugin-svelte": ^6.2.1
   lucide-svelte: ^0.577.0
 
@@ -40,10 +40,10 @@ catalog:
   sharp: ^0.34.5
 
   # Deployment
-  wrangler: ^4.77.0
+  wrangler: ^4.81.1
 
   # Formatting & Linting (Biome only - no more ESLint/Prettier hybrid)
-  "@biomejs/biome": ^2.4.8
+  "@biomejs/biome": ^2.4.11
   husky: ^9.1.7
   lint-staged: ^16.4.0
 
