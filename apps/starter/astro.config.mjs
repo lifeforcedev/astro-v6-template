@@ -1,12 +1,15 @@
 import cloudflare from '@astrojs/cloudflare';
 import svelte from '@astrojs/svelte';
+import crawlerPolicy from '@casoon/astro-crawler-policy';
 import postAudit from '@casoon/astro-post-audit';
+import astroSitemap from '@casoon/astro-sitemap';
 import speedMeasure from '@casoon/astro-speed-measure';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'astro/config';
+import { env } from './src/env.ts';
 
 export default defineConfig({
-  site: 'https://astrov6.casoon.dev',
+  site: env.PUBLIC_SITE_URL,
   adapter: cloudflare({
     sessionKVBindingName: 'SESSION',
   }),
@@ -27,6 +30,15 @@ export default defineConfig({
   integrations: [
     svelte({
       compilerOptions: { runes: true },
+    }),
+    astroSitemap({
+      i18n: {
+        defaultLocale: 'en',
+        locales: { en: 'en', de: 'de' },
+      },
+    }),
+    crawlerPolicy({
+      sitemaps: [`${env.PUBLIC_SITE_URL}/sitemap.xml`],
     }),
     speedMeasure(),
     postAudit({

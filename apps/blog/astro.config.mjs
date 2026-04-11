@@ -1,13 +1,17 @@
 import cloudflare from '@astrojs/cloudflare';
 import mdx from '@astrojs/mdx';
 import svelte from '@astrojs/svelte';
+import crawlerPolicy from '@casoon/astro-crawler-policy';
 import postAudit from '@casoon/astro-post-audit';
+import astroSitemap from '@casoon/astro-sitemap';
 import speedMeasure from '@casoon/astro-speed-measure';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'astro/config';
+import { env } from './src/env.ts';
+import { getBlogRssItems } from './src/utils/blog-rss.js';
 
 export default defineConfig({
-  site: 'https://astrov6blog.casoon.dev',
+  site: env.PUBLIC_SITE_URL,
   adapter: cloudflare(),
 
   i18n: {
@@ -23,6 +27,23 @@ export default defineConfig({
       compilerOptions: { runes: true },
     }),
     mdx(),
+    astroSitemap({
+      i18n: {
+        defaultLocale: 'en',
+        locales: { en: 'en', de: 'de' },
+      },
+      priority: [{ pattern: '/blog/', priority: 0.7 }],
+      changefreq: [{ pattern: '/blog/', changefreq: 'monthly' }],
+      rss: {
+        title: env.PUBLIC_SITE_NAME,
+        description: 'A blog template built with Astro v6, MDX and Content Collections.',
+        language: env.PUBLIC_LOCALE,
+        getItems: getBlogRssItems,
+      },
+    }),
+    crawlerPolicy({
+      sitemaps: [`${env.PUBLIC_SITE_URL}/sitemap.xml`],
+    }),
     speedMeasure(),
     postAudit({
       throwOnError: false,
