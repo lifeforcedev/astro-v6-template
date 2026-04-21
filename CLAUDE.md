@@ -59,18 +59,7 @@ e2e/
 - Mobile-first, dark mode support
 
 ### Accessibility (WCAG 2.1 Level AA)
-- Contrast ratio >= 4.5:1 for normal text, >= 3:1 for large text
-- All interactive elements keyboard-accessible with visible `:focus-visible` outline
-- Skip link to `#main` on every page
-- Semantic HTML landmarks: `<nav>`, `<main>`, `<article>`, `<section>`, `<footer>`
-- ARIA labels on icon-only buttons and navigation landmarks
-- Form inputs: associated `<label>`, `aria-invalid` on errors, `aria-describedby` linking to error messages with `role="alert"`
-- Links distinguishable by underline (not color alone) per WCAG 1.4.1; use `no-underline` on button-style links and navigation
-- Images require `alt` text (decorative images: `alt=""`)
-- Page language set via `lang` attribute on `<html>`
-- Single `<h1>` per page, heading hierarchy without skipping levels
-- Error pages use `role="alert"` for screen reader announcement
-- Automated a11y testing via `@axe-core/playwright` in E2E suite
+See `accessibility-audit` skill. Automated testing via `@axe-core/playwright` in E2E suite.
 
 ### Styling
 - Prefer Tailwind utility classes
@@ -128,11 +117,11 @@ e2e/
 
 ## Claude Skills
 
-Detailed development guidelines are available as skills under `.claude/skills/`:
+Detailed development guidelines are available as global skills (in `~/.claude/skills/` via casoon-ai-agent-config). Local skills under `.claude/skills/`: `cloudflare`, `final-pass`.
 
-- **astro-v6** — Astro v6 API, Content Collections, Zod v4, component patterns
-- **client-scripts** — `<script>` vs `is:inline`, bundling, FOUC prevention, SPA events
-- **tailwind-v4** — Tailwind v4 syntax, design tokens, dark mode, CSS-first config
+- **astro-architecture** — Astro v6 API, Content Collections, Zod v4, component patterns
+- **astro-client-scripts** — `<script>` vs `is:inline`, bundling, FOUC prevention, SPA events
+- **tailwind-ui** — Tailwind v4 syntax, design tokens, dark mode, CSS-first config
 - **svelte-5** — Runes API ($state, $derived, $effect), event handlers, props
 - **playwright** — E2E test patterns, axe-core a11y, multi-project config
 - **cloudflare** — Workers deploy, wrangler, KV bindings, sessions, adapter
@@ -142,56 +131,25 @@ Detailed development guidelines are available as skills under `.claude/skills/`:
 - **seo** — OG images, PageSEO component, sitemap, robots.txt, JSON-LD
 - **local-business-seo** — LocalBusiness JSON-LD, geo meta tags, areaServed, regionale Keywords
 - **ui-design** — 7 core UI design rules: no pure black/white, 8px spacing, max 2 fonts, 60/30/10 color, type hierarchy, line length, visual hierarchy
-- **wcag-a11y** — WCAG 2.2 AA patterns: landmarks, forms, focus, contrast, ARIA, motion, dialogs, checklists
+- **accessibility-audit** — WCAG 2.2 AA patterns: landmarks, forms, focus, contrast, ARIA, motion, dialogs, checklists
 - **darkmode** — Dark mode implementation: class-based toggle, cookie persistence, color guidelines, FOUC prevention
-- **performance** — Core Web Vitals, image optimization, content-visibility, scroll-driven animations
+- **web-performance** — Core Web Vitals, image optimization, content-visibility, scroll-driven animations
 - **post-audit** — Post-build SEO/a11y/link audit integration and remediation patterns
 - **webspire** — Webspire MCP integration: UI patterns, CSS snippets, design tokens, glass effects
 
 ## Webspire MCP
 
-[Webspire](https://www.webspire.de) provides curated UI patterns and CSS snippets via MCP.
-
-### Setup
-- MCP server configured in `.claude/mcp.json` (`@webspire/mcp`)
-- Query patterns: `search_patterns`, `get_pattern` (hero, pricing, faq, tabs, cards, steps)
-- Query snippets: `search_snippets`, `get_snippet` (glass, scroll, hover, easing)
-- Brand mapping: `recommend_token_mapping` generates CSS tokens from your brand colors
-
-### Token Integration
-1. Use `setup_tokens` to generate base token CSS
-2. Override `--ws-color-primary`, `--ws-color-accent` etc. with your brand colors
-3. Webspire patterns automatically inherit your brand via CSS custom properties
-
-### Available CSS Snippets
-Commonly used classes: `.scroll-reveal`, `.hover-lift`, `.shine-sweep`, `.border-draw`, `.spotlight-card`, `.stagger-children`
-
-All snippets include `@media (prefers-reduced-motion: reduce)` handlers.
+MCP server configured in `.claude/mcp.json` (`@webspire/mcp`). See `webspire` skill for patterns, snippets, and token integration.
 
 ## View Transitions (ClientRouter)
 
-### Script Patterns
-- **Module `<script>`** — runs once, persists across navigations. Use `astro:page-load` for re-initialization.
-- **`<script is:inline>`** — re-runs on every navigation. No TypeScript allowed.
-- **`data-astro-rerun`** — forces re-execution. Implies `is:inline`. Use IIFE for fresh DOM refs.
+See `astro-client-scripts` skill for script patterns. Known pitfalls:
 
-### Common Mistakes
 | Mistake | Fix |
 |---------|-----|
-| `astro:page-load` + `data-astro-rerun` together | Choose one — both causes double execution |
-| TypeScript in `is:inline` scripts | Remove type annotations, use plain JS |
+| `astro:page-load` + `data-astro-rerun` together | Choose one — causes double execution |
 | `classList.add('a b')` (space in string) | Use `classList.add('a', 'b')` (separate args) |
-| document-level listeners without cleanup | Store on `window.__handler`, remove before re-adding |
 
 ## Dark Mode
 
-Class-based via `.dark` on `<html>`. Persisted via cookie + localStorage.
-
-### Key Principles
-- Warm tones, not cold grays
-- No pure black (`#000`) or pure white (`#fff`)
-- Adjust accent colors for dark surfaces (lighten or warm up)
-- Use `:global(html.dark)` in scoped Astro styles
-- All animations must support `prefers-reduced-motion: reduce`
-
-See `/darkmode` skill for complete implementation guide.
+Class-based via `.dark` on `<html>`. Persisted via cookie + localStorage. See `darkmode` skill.
