@@ -117,25 +117,7 @@ See `accessibility-audit` skill. Automated testing via `@axe-core/playwright` in
 
 ## Claude Skills
 
-Detailed development guidelines are available as global skills (in `~/.claude/skills/` via casoon-ai-agent-config). Local skills under `.claude/skills/`: `cloudflare`, `final-pass`.
-
-- **astro-architecture** — Astro v6 API, Content Collections, Zod v4, component patterns
-- **astro-client-scripts** — `<script>` vs `is:inline`, bundling, FOUC prevention, SPA events
-- **tailwind-ui** — Tailwind v4 syntax, design tokens, dark mode, CSS-first config
-- **svelte-5** — Runes API ($state, $derived, $effect), event handlers, props
-- **playwright** — E2E test patterns, axe-core a11y, multi-project config
-- **cloudflare** — Workers deploy, wrangler, KV bindings, sessions, adapter
-- **i18n** — Translations, locale routing, adding pages/locales
-- **biome** — Lint/format config, pre-commit hooks, known quirks
-- **mdx-content** — Content Collections, Loader API, blog posts, RSS
-- **seo** — OG images, PageSEO component, sitemap, robots.txt, JSON-LD
-- **local-business-seo** — LocalBusiness JSON-LD, geo meta tags, areaServed, regionale Keywords
-- **ui-design** — 7 core UI design rules: no pure black/white, 8px spacing, max 2 fonts, 60/30/10 color, type hierarchy, line length, visual hierarchy
-- **accessibility-audit** — WCAG 2.2 AA patterns: landmarks, forms, focus, contrast, ARIA, motion, dialogs, checklists
-- **darkmode** — Dark mode implementation: class-based toggle, cookie persistence, color guidelines, FOUC prevention
-- **web-performance** — Core Web Vitals, image optimization, content-visibility, scroll-driven animations
-- **post-audit** — Post-build SEO/a11y/link audit integration and remediation patterns
-- **webspire** — Webspire MCP integration: UI patterns, CSS snippets, design tokens, glass effects
+Reusable development skills (Astro, Tailwind, Svelte, SEO, Playwright, etc.) are maintained separately at [casoon/ai-agent-config](https://github.com/casoon/ai-agent-config).
 
 ## Webspire MCP
 

@@ -380,11 +380,12 @@ This template leverages the key features of Astro v6:
 
 ## Claude Code Integration
 
-This template includes a full [Claude Code](https://docs.anthropic.com/en/docs/claude-code) setup for AI-assisted development:
+This template includes a [Claude Code](https://docs.anthropic.com/en/docs/claude-code) setup for AI-assisted development:
 
-- **Skills** (`.claude/skills/`) — Domain-specific guidelines for Astro v6, Tailwind v4, Svelte 5, Playwright, Cloudflare, i18n, SEO, local business SEO, MDX, Biome, final-pass, and more
 - **MCP Servers** (`.claude/mcp.json`) — Pre-configured MCP servers for context7 documentation lookup, Cloudflare tooling, and Webspire UI patterns
 - **Project instructions** (`CLAUDE.md`) — Architecture rules, code conventions, and dependency constraints
+
+For the full set of reusable Claude Code skills (Astro, Tailwind, Svelte, SEO, Playwright, and more), see [casoon/ai-agent-config](https://github.com/casoon/ai-agent-config).
 
 ## License
 
