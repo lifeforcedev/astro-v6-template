@@ -2,17 +2,20 @@ export const prerender = true;
 
 import rss from '@astrojs/rss';
 import { env } from '../env.ts';
-import { getCollection } from 'astro:content';
+import { type CollectionEntry, getCollection } from 'astro:content';
 
 export async function GET() {
-  const posts = await getCollection('blog', ({ data }) => !data.draft);
-  const sorted = posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+  const posts = await getCollection('blog', (entry: CollectionEntry<'blog'>) => !entry.data.draft);
+  const sorted = posts.sort(
+    (a: CollectionEntry<'blog'>, b: CollectionEntry<'blog'>) =>
+      b.data.date.getTime() - a.data.date.getTime()
+  );
 
   return rss({
     title: env.PUBLIC_SITE_NAME,
     description: 'A blog template built with Astro v6, MDX and Content Collections.',
     site: new URL(env.PUBLIC_SITE_URL),
-    items: sorted.map((post) => ({
+    items: sorted.map((post: CollectionEntry<'blog'>) => ({
       title: post.data.title,
       description: post.data.description,
       pubDate: post.data.date,

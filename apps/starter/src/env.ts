@@ -7,4 +7,4 @@ const envSchema = createEnvSchema({
   PUBLIC_LOCALE: 'en',
 });
 
-export const env = validateEnv(envSchema, import.meta.env);
+export const env = validateEnv(envSchema, import.meta.env ?? {});
