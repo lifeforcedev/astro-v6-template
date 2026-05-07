@@ -65,8 +65,7 @@ This template succeeds [astro-v5-template](https://github.com/casoon/astro-v5-te
 - **Zod v4** — Runtime validation for env, forms, API
 - **pnpm Workspaces** — Monorepo with catalog for centralized dependency management
 - **Dark Mode** — System preference + manual toggle
-- **Sitemap** — [`@casoon/astro-sitemap`](https://github.com/casoon/astro-sitemap) generates `/sitemap.xml` at build time with i18n hreflang, RSS feed, and pattern-based priority/changefreq rules
-- **Crawler Policy** — [`@casoon/astro-crawler-policy`](https://github.com/casoon/astro-crawler-policy) generates `robots.txt` and `llms.txt` from a curated bot registry with presets for SEO, AI training control and citation-friendliness
+- **Site Files** — [`@casoon/astro-site-files`](https://github.com/casoon/astro-site-files) generates `robots.txt`, `sitemap.xml`, `llms.txt`, `security.txt` and `humans.txt` at build time
 - **SEO** — robots.txt, canonical URLs, meta descriptions, JSON-LD
 - **WCAG 2.1 AA** — Two-layer accessibility: axe-core runtime checks + static HTML audit
 - **TypeScript Strict** — Fully typed throughout
@@ -149,8 +148,8 @@ Landing page featuring:
 Blog template featuring:
 - MDX support
 - Content Collections (Loader API)
-- Automatic RSS feed (`/rss.xml`) via `astroSitemap` integration
-- Automatic sitemap (`/sitemap.xml`) with i18n hreflang
+- Automatic RSS feed (`/rss.xml`) via `@astrojs/rss` page endpoint
+- Automatic sitemap (`/sitemap.xml`) with i18n hreflang via `@casoon/astro-site-files`
 - i18n (English + German) with language switcher
 - OG image generation per page and blog post
 - Tag display
@@ -279,54 +278,30 @@ postAudit({
 
 Checks include canonical URLs, meta descriptions, Open Graph tags, heading hierarchy, broken links with fragment validation, sitemap cross-referencing, `target="_blank"` security, hreflang reciprocal validation and WCAG heuristics (skip link, alt text, button text, form labels). Set `throwOnError: true` for strict CI enforcement.
 
-## Sitemap
+## Site Files
 
-Both apps use [`@casoon/astro-sitemap`](https://github.com/casoon/astro-sitemap) to generate `/sitemap.xml` as part of `astro:build:done` — no extra page route needed.
+Both apps use [`@casoon/astro-site-files`](https://github.com/casoon/astro-site-files) to generate all standard site meta-files at build time:
 
 ```js
 // astro.config.mjs
-import astroSitemap from '@casoon/astro-sitemap';
-import { getBlogRssItems } from './src/utils/blog-rss.js';
+import siteFiles from '@casoon/astro-site-files';
 
-astroSitemap({
-  i18n: {
-    defaultLocale: 'en',
-    locales: { en: 'en', de: 'de' },  // adds xhtml:link hreflang entries
+siteFiles({
+  sitemap: {
+    i18n: { defaultLocale: 'en', locales: { en: 'en', de: 'de-DE' } },
+    sources: [getBlogSitemapEntries],  // blog: inject lastmod from MDX frontmatter
   },
-  priority: [
-    { pattern: '/blog/', priority: 0.7 },
-  ],
-  changefreq: [
-    { pattern: '/blog/', changefreq: 'monthly' },
-  ],
-  rss: {
+  robots: {},   // allow all, sitemap URL auto-derived from astro.config.site
+  llms: {
     title: 'Astro v6 Blog',
     description: 'A blog template built with Astro v6, MDX and Content Collections.',
-    language: 'en',
-    getItems: getBlogRssItems,   // reads MDX frontmatter via gray-matter
   },
 }),
 ```
 
-The `getItems` helper (`src/utils/blog-rss.js`) reads MDX frontmatter directly with `gray-matter` rather than `getCollection()`, because Astro's content API is unavailable inside the build hook.
+Generated files: `robots.txt`, `sitemap.xml` (with i18n hreflang), `llms.txt`. Optional: `/.well-known/security.txt`, `humans.txt`.
 
-Features: static page discovery from Astro's build output, i18n hreflang links, RSS feed generation, pattern-based priority/changefreq, sitemap-index chunking for large sites (>50k URLs).
-
-## Crawler Policy
-
-Both apps use [`@casoon/astro-crawler-policy`](https://github.com/casoon/astro-crawler-policy) to generate `robots.txt` (and optionally `llms.txt`) from a curated bot registry.
-
-```js
-// astro.config.mjs
-import crawlerPolicy from '@casoon/astro-crawler-policy';
-
-crawlerPolicy({
-  sitemaps: ['https://astrov6blog.casoon.dev/sitemap.xml'],
-  // preset: 'seoOnly' | 'citationFriendly' | 'openToAi' | 'blockTraining' | 'lockdown'
-}),
-```
-
-The default preset (`seoOnly`) allows all verified search engine bots and blocks AI training crawlers. Override per environment via the `env` option.
+The blog RSS feed is generated as a prerendered page endpoint (`src/pages/rss.xml.ts`) using `@astrojs/rss` + `getCollection()`.
 
 ## Accessibility (WCAG 2.1 AA)
 

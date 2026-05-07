@@ -10,24 +10,24 @@ onlyBuiltDependencies:
 
 catalog:
   # Astro v6 (stable)
-  astro: ^6.1.8
-  "@astrojs/check": ^0.9.8
-  "@astrojs/cloudflare": ^13.1.10
-  "@astrojs/mdx": ^5.0.3
-  "@astrojs/svelte": ^8.0.5
-  "@axe-core/playwright": ^4.11.2
+  astro: ^6.3.0
+  "@astrojs/check": ^0.9.9
+  "@astrojs/cloudflare": ^13.4.0
+  "@astrojs/mdx": ^5.0.4
   "@astrojs/rss": ^4.0.18
+  "@astrojs/svelte": ^8.1.0
+  "@axe-core/playwright": ^4.11.3
   "@casoon/astro-post-audit": ^0.2.6
   "@casoon/astro-site-files": ^0.1.5
   "@casoon/astro-speed-measure": ^0.2.0
 
   # Tailwind v4
-  tailwindcss: ^4.2.2
+  tailwindcss: ^4.2.4
   "@tailwindcss/typography": ^0.5.19
-  "@tailwindcss/vite": ^4.2.2
+  "@tailwindcss/vite": ^4.2.4
 
   # Svelte 5
-  svelte: ^5.55.4
+  svelte: ^5.55.5
   "@sveltejs/vite-plugin-svelte": ^6.2.1
   lucide-svelte: ^0.577.0
 
@@ -35,7 +35,7 @@ catalog:
   gray-matter: ^4.0.3
   tsx: ^4.21.0
   typescript: ^6.0.3
-  zod: ^4.3.6
+  zod: ^4.4.3
   clsx: ^2.1.1
   tailwind-merge: ^3.5.0
   satori: ^0.26.0
@@ -43,12 +43,12 @@ catalog:
   sharp: ^0.34.5
 
   # Deployment
-  wrangler: ^4.83.0
+  wrangler: ^4.88.0
 
   # Formatting & Linting (Biome only - no more ESLint/Prettier hybrid)
-  "@biomejs/biome": ^2.4.12
+  "@biomejs/biome": ^2.4.14
   husky: ^9.1.7
-  lint-staged: ^16.4.0
+  lint-staged: ^17.0.2
 
   # Fonts (reduced set)
   "@fontsource/inter": ^5.2.8
