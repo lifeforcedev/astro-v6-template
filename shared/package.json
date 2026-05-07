@@ -2,6 +2,7 @@
   "name": "@astro-v6/shared",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "exports": {
     "./styles/*": "./src/styles/*",
     "./layouts/*": "./src/layouts/*",
@@ -9,7 +10,7 @@
     "./seo/*": "./src/seo/*",
     ".": "./src/utils/index.ts",
     "./utils": "./src/utils/index.ts",
-    "./utils/*": "./src/utils/*"
+    "./utils/*": "./src/utils/*.ts"
   },
   "dependencies": {
     "@resvg/resvg-js": "catalog:",
