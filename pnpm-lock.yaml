@@ -15,6 +15,9 @@ catalogs:
     '@astrojs/mdx':
       specifier: ^5.0.3
       version: 5.0.3
+    '@astrojs/rss':
+      specifier: ^4.0.18
+      version: 4.0.18
     '@astrojs/svelte':
       specifier: ^8.0.5
       version: 8.0.5
@@ -24,15 +27,12 @@ catalogs:
     '@biomejs/biome':
       specifier: ^2.4.12
       version: 2.4.12
-    '@casoon/astro-crawler-policy':
-      specifier: 0.1.2
-      version: 0.1.2
     '@casoon/astro-post-audit':
       specifier: ^0.2.6
       version: 0.2.6
-    '@casoon/astro-sitemap':
-      specifier: ^0.2.2
-      version: 0.2.2
+    '@casoon/astro-site-files':
+      specifier: ^0.1.5
+      version: 0.1.5
     '@casoon/astro-speed-measure':
       specifier: ^0.2.0
       version: 0.2.0
@@ -138,15 +138,15 @@ importers:
       '@astrojs/mdx':
         specifier: 'catalog:'
         version: 5.0.3(astro@6.1.8(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.59.0)(tsx@4.21.0)(typescript@6.0.3)(yaml@2.8.2))
+      '@astrojs/rss':
+        specifier: 'catalog:'
+        version: 4.0.18
       '@astrojs/svelte':
         specifier: 'catalog:'
         version: 8.0.5(astro@6.1.8(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.59.0)(tsx@4.21.0)(typescript@6.0.3)(yaml@2.8.2))(jiti@2.6.1)(lightningcss@1.32.0)(svelte@5.55.4)(tsx@4.21.0)(typescript@6.0.3)(yaml@2.8.2)
-      '@casoon/astro-crawler-policy':
+      '@casoon/astro-site-files':
         specifier: 'catalog:'
-        version: 0.1.2(astro@6.1.8(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.59.0)(tsx@4.21.0)(typescript@6.0.3)(yaml@2.8.2))
-      '@casoon/astro-sitemap':
-        specifier: 'catalog:'
-        version: 0.2.2(astro@6.1.8(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.59.0)(tsx@4.21.0)(typescript@6.0.3)(yaml@2.8.2))
+        version: 0.1.5(astro@6.1.8(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.59.0)(tsx@4.21.0)(typescript@6.0.3)(yaml@2.8.2))
       '@casoon/astro-speed-measure':
         specifier: 'catalog:'
         version: 0.2.0(astro@6.1.8(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.59.0)(tsx@4.21.0)(typescript@6.0.3)(yaml@2.8.2))
@@ -208,12 +208,9 @@ importers:
       '@astrojs/svelte':
         specifier: 'catalog:'
         version: 8.0.5(astro@6.1.8(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.59.0)(tsx@4.21.0)(typescript@6.0.3)(yaml@2.8.2))(jiti@2.6.1)(lightningcss@1.32.0)(svelte@5.55.4)(tsx@4.21.0)(typescript@6.0.3)(yaml@2.8.2)
-      '@casoon/astro-crawler-policy':
+      '@casoon/astro-site-files':
         specifier: 'catalog:'
-        version: 0.1.2(astro@6.1.8(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.59.0)(tsx@4.21.0)(typescript@6.0.3)(yaml@2.8.2))
-      '@casoon/astro-sitemap':
-        specifier: 'catalog:'
-        version: 0.2.2(astro@6.1.8(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.59.0)(tsx@4.21.0)(typescript@6.0.3)(yaml@2.8.2))
+        version: 0.1.5(astro@6.1.8(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.59.0)(tsx@4.21.0)(typescript@6.0.3)(yaml@2.8.2))
       '@casoon/astro-speed-measure':
         specifier: 'catalog:'
         version: 0.2.0(astro@6.1.8(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.59.0)(tsx@4.21.0)(typescript@6.0.3)(yaml@2.8.2))
@@ -325,6 +322,9 @@ packages:
     resolution: {integrity: sha512-nksZQVjlferuWzhPsBpQ1JE5XuKAf1id1/9Hj4a9KG4+ofrlzxUUwX4YGQF/SuDiuiGKEnzopGOt38F3AnVWsQ==}
     engines: {node: '>=22.12.0'}
 
+  '@astrojs/rss@4.0.18':
+    resolution: {integrity: sha512-wc5DwKlbTEdgVAWnHy8krFTeQ42t1v/DJqeq5HtulYK3FYHE4krtRGjoyhS3eXXgfdV6Raoz2RU3wrMTFAitRg==}
+
   '@astrojs/svelte@8.0.5':
     resolution: {integrity: sha512-w9ZQyyve169KQKB7AJUikeOrztkVtdDqjvilqkLO+yDZixYIuxlq6LsPxgaWJX7dfvVmGcdpg6bxsHFtfHJZrw==}
     engines: {node: '>=22.12.0'}
@@ -426,15 +426,6 @@ packages:
     resolution: {integrity: sha512-VERIM64vtTP1C4mxQ5thVT9fK0apjPFobqybMtA1UdUujWka24ERHbRHFGmpbbhp73MhV+KSsHQH9C6uOTdEQA==}
     engines: {node: '>=18'}
 
-  '@casoon/astro-crawler-policy@0.1.2':
-    resolution: {integrity: sha512-ceHvd8qOdGO+maMKF87n+HTN2xNDwN4BEUvphFo+mxw6oKgxEksa5EzJF5vpYRJkboMoxYm9mRwRiNJAhIOHig==}
-    engines: {node: '>=18.0.0'}
-    peerDependencies:
-      astro: '>=4.0.0'
-    peerDependenciesMeta:
-      astro:
-        optional: true
-
   '@casoon/astro-post-audit@0.2.6':
     resolution: {integrity: sha512-vhalWk6+miSNQ5LbC0p8ekC1Q00HBmrAFsveB8E+Jx7sCmqyyrcsZK1BpAXOjToHn+S5Y8c2BZC2gDJfOZeOKg==}
     engines: {node: '>=18'}
@@ -444,8 +435,8 @@ packages:
     peerDependencies:
       astro: ^5.0.0 || ^6.0.0-beta.0
 
-  '@casoon/astro-sitemap@0.2.2':
-    resolution: {integrity: sha512-vh+wXdpInlC3gbrDNOAIAjLsQh8OnI7nYTFMWHJvikjIJUcx67kqqbjS7iJE4BG01cAEPVbqp8URIERYISS/GQ==}
+  '@casoon/astro-site-files@0.1.5':
+    resolution: {integrity: sha512-qgz9bYH0dblo7K6o0BDf/5bIlZTeyDwSfRrNfvUbvOqBQizD6BeOrgNalP9VU+opg2W08IMCEim1FyFJxEhChg==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       astro: '>=6.0.0'
@@ -941,6 +932,9 @@ packages:
     peerDependenciesMeta:
       '@cfworker/json-schema':
         optional: true
+
+  '@nodable/entities@2.1.0':
+    resolution: {integrity: sha512-nyT7T3nbMyBI/lvr6L5TyWbFJAI9FTgVRakNoBqCD+PmID8DzFrrNdLLtHMwMszOtqZa8PAOV24ZqDnQrhQINA==}
 
   '@oslojs/encoding@1.1.0':
     resolution: {integrity: sha512-70wQhgYmndg4GCPxPPxPGevRKqTIJ2Nh4OkiMWmDAVYsTQ+Ta7Sq+rPevXyXGdzr30/qZBnyOalCszoMxlyldQ==}
@@ -1908,6 +1902,13 @@ packages:
   fast-uri@3.1.0:
     resolution: {integrity: sha512-iPeeDKJSWf4IEOasVVrknXpaBV0IApz/gp7S2bb7Z4Lljbl2MGJRqInZiUrQwV16cpzw/D3S5j5Julj/gT52AA==}
 
+  fast-xml-builder@1.1.9:
+    resolution: {integrity: sha512-jcyKVSEX13iseJqg7n/KWw+xnu/7fdrZ333Fac54KjHDIELVCfDDJXYIm6DTJ0Su4gSzrhqiK0DzY/wZbF40mw==}
+
+  fast-xml-parser@5.7.3:
+    resolution: {integrity: sha512-C0AaNuC+mscy6vrAQKAc/rMq+zAPHodfHGZu4sGVehvAQt/JLG1O5zEcYcXSY5zSqr4YVgxsB+pHXTq0i7eDlg==}
+    hasBin: true
+
   fdir@6.5.0:
     resolution: {integrity: sha512-tIbYtZbucOs0BRGqPJkshJUYdL+SDH7dVM8gjy+ERp3WAUjLEFJE+02kanyHtwjWOnwrKYBiwAmM0p4kLJAnXg==}
     engines: {node: '>=12.0.0'}
@@ -2593,6 +2594,10 @@ packages:
   path-browserify@1.0.1:
     resolution: {integrity: sha512-b7uo2UCUOYZcnF/3ID0lulOJi/bafxa1xPe7ZPsammBSpjSWQkjNxlt635YGS2MiR9GjvuXCtz2emr3jbsz98g==}
 
+  path-expression-matcher@1.5.0:
+    resolution: {integrity: sha512-cbrerZV+6rvdQrrD+iGMcZFEiiSrbv9Tfdkvnusy6y0x0GKBXREFg/Y65GhIfm0tnLntThhzCnfKwp1WRjeCyQ==}
+    engines: {node: '>=14.0.0'}
+
   path-key@3.1.1:
     resolution: {integrity: sha512-ojmeN0qd+y0jszEtoY48r0Peq5dwMEkIlCOu6Q5f41lfkswXuKtYrhgoTpLnyIcHm24Uhqx+5Tqm2InSwLhE6Q==}
     engines: {node: '>=8'}
@@ -2918,6 +2923,9 @@ packages:
   strip-bom-string@1.0.0:
     resolution: {integrity: sha512-uCC2VHvQRYu+lMh4My/sFNmF2klFymLX1wHJeXnbEJERpV/ZsVuonzerjfrGpIGF7LBVa1O7i9kjiWvJiFck8g==}
     engines: {node: '>=0.10.0'}
+
+  strnum@2.2.3:
+    resolution: {integrity: sha512-oKx6RUCuHfT3oyVjtnrmn19H1SiCqgJSg+54XqURKp5aCMbrXrhLjRN9TjuwMjiYstZ0MzDrHqkGZ5dFTKd+zg==}
 
   style-to-js@1.1.21:
     resolution: {integrity: sha512-RjQetxJrrUJLQPHbLku6U/ocGtzyjbJMP9lCNK7Ag0CNh690nSH8woqWH9u16nMjYBAok+i7JO1NP2pOy8IsPQ==}
@@ -3529,6 +3537,12 @@ snapshots:
     dependencies:
       prismjs: 1.30.0
 
+  '@astrojs/rss@4.0.18':
+    dependencies:
+      fast-xml-parser: 5.7.3
+      piccolore: 0.1.3
+      zod: 4.3.6
+
   '@astrojs/svelte@8.0.5(astro@6.1.8(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.59.0)(tsx@4.21.0)(typescript@6.0.3)(yaml@2.8.2))(jiti@2.6.1)(lightningcss@1.32.0)(svelte@5.55.4)(tsx@4.21.0)(typescript@6.0.3)(yaml@2.8.2)':
     dependencies:
       '@sveltejs/vite-plugin-svelte': 6.2.4(svelte@5.55.4)(vite@7.3.1(jiti@2.6.1)(lightningcss@1.32.0)(tsx@4.21.0)(yaml@2.8.2))
@@ -3623,15 +3637,11 @@ snapshots:
     dependencies:
       fontkitten: 1.0.2
 
-  '@casoon/astro-crawler-policy@0.1.2(astro@6.1.8(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.59.0)(tsx@4.21.0)(typescript@6.0.3)(yaml@2.8.2))':
-    optionalDependencies:
-      astro: 6.1.8(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.59.0)(tsx@4.21.0)(typescript@6.0.3)(yaml@2.8.2)
-
   '@casoon/astro-post-audit@0.2.6(astro@6.1.8(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.59.0)(tsx@4.21.0)(typescript@6.0.3)(yaml@2.8.2))':
     dependencies:
       astro: 6.1.8(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.59.0)(tsx@4.21.0)(typescript@6.0.3)(yaml@2.8.2)
 
-  '@casoon/astro-sitemap@0.2.2(astro@6.1.8(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.59.0)(tsx@4.21.0)(typescript@6.0.3)(yaml@2.8.2))':
+  '@casoon/astro-site-files@0.1.5(astro@6.1.8(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.59.0)(tsx@4.21.0)(typescript@6.0.3)(yaml@2.8.2))':
     optionalDependencies:
       astro: 6.1.8(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.59.0)(tsx@4.21.0)(typescript@6.0.3)(yaml@2.8.2)
 
@@ -3999,6 +4009,8 @@ snapshots:
       zod-to-json-schema: 3.25.1(zod@4.3.6)
     transitivePeerDependencies:
       - supports-color
+
+  '@nodable/entities@2.1.0': {}
 
   '@oslojs/encoding@1.1.0': {}
 
@@ -4949,6 +4961,17 @@ snapshots:
   fast-deep-equal@3.1.3: {}
 
   fast-uri@3.1.0: {}
+
+  fast-xml-builder@1.1.9:
+    dependencies:
+      path-expression-matcher: 1.5.0
+
+  fast-xml-parser@5.7.3:
+    dependencies:
+      '@nodable/entities': 2.1.0
+      fast-xml-builder: 1.1.9
+      path-expression-matcher: 1.5.0
+      strnum: 2.2.3
 
   fdir@6.5.0(picomatch@4.0.3):
     optionalDependencies:
@@ -5956,6 +5979,8 @@ snapshots:
 
   path-browserify@1.0.1: {}
 
+  path-expression-matcher@1.5.0: {}
+
   path-key@3.1.1: {}
 
   path-to-regexp@6.3.0: {}
@@ -6414,6 +6439,8 @@ snapshots:
       ansi-regex: 6.2.2
 
   strip-bom-string@1.0.0: {}
+
+  strnum@2.2.3: {}
 
   style-to-js@1.1.21:
     dependencies:

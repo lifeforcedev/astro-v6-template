@@ -1,8 +1,7 @@
 import cloudflare from '@astrojs/cloudflare';
 import svelte from '@astrojs/svelte';
-import crawlerPolicy from '@casoon/astro-crawler-policy';
 import postAudit from '@casoon/astro-post-audit';
-import astroSitemap from '@casoon/astro-sitemap';
+import siteFiles from '@casoon/astro-site-files';
 import speedMeasure from '@casoon/astro-speed-measure';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'astro/config';
@@ -31,41 +30,21 @@ export default defineConfig({
     svelte({
       compilerOptions: { runes: true },
     }),
-    astroSitemap({
-      // i18n: generate hreflang alternate links for every page
-      i18n: {
-        defaultLocale: 'en',
-        locales: { en: 'en', de: 'de-DE' },
+    siteFiles({
+      sitemap: {
+        i18n: {
+          defaultLocale: 'en',
+          locales: { en: 'en', de: 'de-DE' },
+        },
+        audit: {
+          warnOnEmpty: true,
+          errorOnDuplicates: false,
+        },
       },
-
-      // audit: warn on empty sitemap, error on duplicate URLs
-      audit: {
-        warnOnEmpty: true,
-        errorOnDuplicates: false,
-      },
-    }),
-    crawlerPolicy({
-      // citationFriendly: allow search engines + AI citation, block AI training
-      preset: 'citationFriendly',
-      sitemaps: [`${env.PUBLIC_SITE_URL}/sitemap.xml`],
-
-      // contentSignals: machine-readable hints for AI crawlers
-      contentSignals: {
-        search: true,
-        aiInput: true,
-        aiTrain: false,
-      },
-
-      // llmsTxt: generate /llms.txt with a human-readable AI content policy
-      output: {
-        robotsTxt: true,
-        llmsTxt: true,
-      },
-
-      // env: lock crawlers out on non-production deployments
-      env: {
-        staging: { preset: 'lockdown' },
-        preview: { preset: 'lockdown' },
+      robots: {},
+      llms: {
+        title: env.PUBLIC_SITE_NAME,
+        description: 'Astro v6 starter with Tailwind v4, Svelte 5 and Cloudflare.',
       },
     }),
     speedMeasure(),

@@ -1,14 +1,13 @@
 import cloudflare from '@astrojs/cloudflare';
 import mdx from '@astrojs/mdx';
 import svelte from '@astrojs/svelte';
-import crawlerPolicy from '@casoon/astro-crawler-policy';
 import postAudit from '@casoon/astro-post-audit';
-import astroSitemap from '@casoon/astro-sitemap';
+import siteFiles from '@casoon/astro-site-files';
 import speedMeasure from '@casoon/astro-speed-measure';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'astro/config';
 import { env } from './src/env.ts';
-import { getBlogRssItems, getBlogSitemapEntries } from './src/utils/blog-rss.js';
+import { getBlogSitemapEntries } from './src/utils/blog-rss.js';
 
 export default defineConfig({
   site: env.PUBLIC_SITE_URL,
@@ -27,71 +26,32 @@ export default defineConfig({
       compilerOptions: { runes: true },
     }),
     mdx(),
-    astroSitemap({
-      // i18n: generate hreflang alternate links for every page
-      i18n: {
-        defaultLocale: 'en',
-        locales: { en: 'en', de: 'de-DE' },
+    siteFiles({
+      sitemap: {
+        i18n: {
+          defaultLocale: 'en',
+          locales: { en: 'en', de: 'de-DE' },
+        },
+        exclude: [/\/blog\/?$/, /\/de\/blog\/?$/],
+        priority: [
+          { pattern: '/$', priority: 1.0 },
+          { pattern: '/blog/', priority: 0.7 },
+        ],
+        changefreq: [
+          { pattern: '/$', changefreq: 'weekly' },
+          { pattern: '/blog/', changefreq: 'monthly' },
+        ],
+        // gray-matter reads MDX frontmatter directly — getCollection() unavailable in build hooks
+        sources: [getBlogSitemapEntries],
+        audit: {
+          warnOnEmpty: true,
+          errorOnDuplicates: false,
+        },
       },
-
-      // exclude: blog index is a listing page, not a canonical content destination
-      exclude: [/\/blog\/?$/, /\/de\/blog\/?$/],
-
-      // priority: pattern-based rules applied to discovered URLs
-      priority: [
-        { pattern: '/$', priority: 1.0 }, // homepage
-        { pattern: '/blog$', priority: 0.8 }, // blog index
-        { pattern: '/blog/', priority: 0.7 }, // individual posts
-      ],
-
-      // changefreq: expected update frequency per URL pattern
-      changefreq: [
-        { pattern: '/$', changefreq: 'weekly' },
-        { pattern: '/blog/', changefreq: 'monthly' },
-      ],
-
-      // sources: add dynamic entries with real lastmod dates from MDX frontmatter.
-      // getCollection() is unavailable in build hooks — gray-matter reads the files directly.
-      sources: [getBlogSitemapEntries],
-
-      // audit: warn on empty sitemap; duplicates are expected because sources()
-      // re-adds blog posts to inject real lastmod dates (last entry wins)
-      audit: {
-        warnOnEmpty: true,
-        errorOnDuplicates: false,
-        warnOnDuplicates: false,
-      },
-
-      // rss: generate /rss.xml alongside the sitemap
-      rss: {
+      robots: {},
+      llms: {
         title: env.PUBLIC_SITE_NAME,
         description: 'A blog template built with Astro v6, MDX and Content Collections.',
-        language: env.PUBLIC_LOCALE,
-        getItems: getBlogRssItems,
-      },
-    }),
-    crawlerPolicy({
-      // citationFriendly: allow search engines + AI citation, block AI training
-      preset: 'citationFriendly',
-      sitemaps: [`${env.PUBLIC_SITE_URL}/sitemap.xml`],
-
-      // contentSignals: machine-readable hints for AI crawlers
-      contentSignals: {
-        search: true,
-        aiInput: true,
-        aiTrain: false,
-      },
-
-      // llmsTxt: generate /llms.txt with a human-readable AI content policy
-      output: {
-        robotsTxt: true,
-        llmsTxt: true,
-      },
-
-      // env: lock crawlers out on non-production deployments
-      env: {
-        staging: { preset: 'lockdown' },
-        preview: { preset: 'lockdown' },
       },
     }),
     speedMeasure(),

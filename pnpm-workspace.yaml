@@ -16,9 +16,9 @@ catalog:
   "@astrojs/mdx": ^5.0.3
   "@astrojs/svelte": ^8.0.5
   "@axe-core/playwright": ^4.11.2
-  "@casoon/astro-crawler-policy": 0.1.2
+  "@astrojs/rss": ^4.0.18
   "@casoon/astro-post-audit": ^0.2.6
-  "@casoon/astro-sitemap": ^0.2.2
+  "@casoon/astro-site-files": ^0.1.5
   "@casoon/astro-speed-measure": ^0.2.0
 
   # Tailwind v4

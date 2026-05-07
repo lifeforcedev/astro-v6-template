@@ -1,5 +1,5 @@
 /**
- * Helpers for astroSitemap integration — RSS items and sitemap sources.
+ * Helpers for RSS and sitemap generation.
  * Uses gray-matter to read MDX frontmatter directly because Astro's
  * getCollection() is unavailable inside the astro:build:done hook.
  */
@@ -13,10 +13,10 @@ const blogContentDir = fileURLToPath(new URL('../content/blog', import.meta.url)
 
 /**
  * Returns sitemap entries for all published blog posts with real lastmod
- * dates from MDX frontmatter. Used by astroSitemap({ sources: [...] }).
+ * dates from MDX frontmatter. Used by siteFiles({ sitemap: { sources: [...] } }).
  * loc must be a relative path — the integration prepends the siteUrl.
  *
- * @returns {import('@casoon/astro-sitemap').SitemapEntry[]}
+ * @returns {import('@casoon/astro-site-files').SitemapEntry[]}
  */
 export function getBlogSitemapEntries() {
   const files = readdirSync(blogContentDir).filter((f) => f.endsWith('.mdx') || f.endsWith('.md'));
@@ -37,8 +37,8 @@ export function getBlogSitemapEntries() {
 }
 
 /**
- * @param {string} siteUrl – passed by the astroSitemap integration
- * @returns {import('@casoon/astro-sitemap').RssItem[]}
+ * @param {string} siteUrl
+ * @returns {import('@astrojs/rss').RSSFeedItem[]}
  */
 export function getBlogRssItems(siteUrl) {
   const files = readdirSync(blogContentDir).filter((f) => f.endsWith('.mdx') || f.endsWith('.md'));
