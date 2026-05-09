@@ -45,6 +45,21 @@ export default defineConfig({
       llms: {
         title: env.PUBLIC_SITE_NAME,
         description: 'Astro v6 starter with Tailwind v4, Svelte 5 and Cloudflare.',
+        sections: [
+          {
+            title: 'Pages',
+            links: [
+              { title: 'Home', url: '/', description: 'Starter template overview.' },
+              { title: 'Contact', url: '/contact/', description: 'Example contact form.' },
+              { title: 'German home', url: '/de/', description: 'German localized homepage.' },
+              {
+                title: 'German contact',
+                url: '/de/contact/',
+                description: 'German localized contact form.',
+              },
+            ],
+          },
+        ],
       },
     }),
     speedMeasure(),

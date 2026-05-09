@@ -4,7 +4,7 @@ export default {
   'nav.contact': 'Kontakt',
 
   // Home
-  'home.title': 'Astro v6 Starter',
+  'home.title': 'Astro v6 Starter auf Deutsch',
   'home.description':
     'Ein minimales, produktionsreifes Template mit Astro v6, Tailwind v4 und Svelte 5.',
   'home.cta.docs': 'Dokumentation',

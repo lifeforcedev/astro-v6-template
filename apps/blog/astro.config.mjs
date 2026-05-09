@@ -52,6 +52,21 @@ export default defineConfig({
       llms: {
         title: env.PUBLIC_SITE_NAME,
         description: 'A blog template built with Astro v6, MDX and Content Collections.',
+        sections: [
+          {
+            title: 'Pages',
+            links: [
+              { title: 'Home', url: '/', description: 'Blog template overview.' },
+              { title: 'Blog index', url: '/blog/', description: 'English blog archive.' },
+              { title: 'German home', url: '/de/', description: 'German localized homepage.' },
+              {
+                title: 'German blog index',
+                url: '/de/blog/',
+                description: 'German localized blog archive.',
+              },
+            ],
+          },
+        ],
       },
     }),
     speedMeasure(),

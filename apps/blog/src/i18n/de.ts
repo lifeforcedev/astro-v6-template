@@ -3,7 +3,7 @@ export default {
   'nav.home': 'Startseite',
 
   // Home
-  'home.title': 'Astro v6 Blog',
+  'home.title': 'Astro v6 Blog auf Deutsch',
   'home.description': 'Ein schlankes Blog-Template mit MDX, Content Collections und RSS-Feed.',
   'home.latest': 'Neueste Beiträge',
 
