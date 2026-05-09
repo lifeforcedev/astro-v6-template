@@ -1,4 +1,3 @@
-import { createStrictPostAuditOptions } from '@astro-v6/shared/utils/post-audit';
 import cloudflare from '@astrojs/cloudflare';
 import svelte from '@astrojs/svelte';
 import postAudit from '@casoon/astro-post-audit';
@@ -64,7 +63,12 @@ export default defineConfig({
       },
     }),
     speedMeasure(),
-    postAudit(createStrictPostAuditOptions({ exclude: ['404.html'] })),
+    postAudit({
+      preset: 'standard',
+      failOn: 'errors',
+      hints: { sourceFiles: true },
+      rules: { filters: { exclude: ['404.html'] } },
+    }),
   ],
 
   prefetch: {

@@ -9,4 +9,3 @@ export {
 } from './api.js';
 export { cn } from './cn.js';
 export { type BaseEnv, baseEnvSchema, createEnvSchema, validateEnv } from './env.js';
-export { createStrictPostAuditOptions } from './post-audit.js';

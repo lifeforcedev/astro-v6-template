@@ -28,8 +28,8 @@ catalogs:
       specifier: ^2.4.14
       version: 2.4.14
     '@casoon/astro-post-audit':
-      specifier: ^0.2.9
-      version: 0.2.9
+      specifier: ^0.2.10
+      version: 0.2.10
     '@casoon/astro-site-files':
       specifier: ^0.1.6
       version: 0.1.6
@@ -186,7 +186,7 @@ importers:
         version: 0.9.9(prettier@3.8.1)(typescript@6.0.3)
       '@casoon/astro-post-audit':
         specifier: 'catalog:'
-        version: 0.2.9(astro@6.3.1(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.59.0)(tsx@4.21.0)(yaml@2.8.4))
+        version: 0.2.10(astro@6.3.1(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.59.0)(tsx@4.21.0)(yaml@2.8.4))
       tsx:
         specifier: 'catalog:'
         version: 4.21.0
@@ -235,7 +235,7 @@ importers:
         version: 0.9.9(prettier@3.8.1)(typescript@6.0.3)
       '@casoon/astro-post-audit':
         specifier: 'catalog:'
-        version: 0.2.9(astro@6.3.1(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.59.0)(tsx@4.21.0)(yaml@2.8.4))
+        version: 0.2.10(astro@6.3.1(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.59.0)(tsx@4.21.0)(yaml@2.8.4))
       tsx:
         specifier: 'catalog:'
         version: 4.21.0
@@ -426,8 +426,8 @@ packages:
     resolution: {integrity: sha512-VERIM64vtTP1C4mxQ5thVT9fK0apjPFobqybMtA1UdUujWka24ERHbRHFGmpbbhp73MhV+KSsHQH9C6uOTdEQA==}
     engines: {node: '>=18'}
 
-  '@casoon/astro-post-audit@0.2.9':
-    resolution: {integrity: sha512-8fYbhEuGgxHzglH6he4fSvAXhjo05ttcP40R6Mg+jpci6uURfN+huJsI/GS/0UxDlP3AdHzffqL37NX/Bcu5vA==}
+  '@casoon/astro-post-audit@0.2.10':
+    resolution: {integrity: sha512-4mpCYo/7/cZTJUymLpCtiWaed/4krTDDTqaKHy2eHqFCwS/okc7aTYRmSvLQgxPbl01+EyH9dHbXwTZ/+ziNOQ==}
     engines: {node: '>=18'}
     cpu: [x64, arm64]
     os: [darwin, linux, win32]
@@ -3631,7 +3631,7 @@ snapshots:
     dependencies:
       fontkitten: 1.0.2
 
-  '@casoon/astro-post-audit@0.2.9(astro@6.3.1(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.59.0)(tsx@4.21.0)(yaml@2.8.4))':
+  '@casoon/astro-post-audit@0.2.10(astro@6.3.1(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.59.0)(tsx@4.21.0)(yaml@2.8.4))':
     dependencies:
       astro: 6.3.1(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.59.0)(tsx@4.21.0)(yaml@2.8.4)
 
