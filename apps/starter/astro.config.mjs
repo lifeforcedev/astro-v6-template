@@ -49,7 +49,8 @@ export default defineConfig({
     }),
     speedMeasure(),
     postAudit({
-      throwOnError: true,
+      failOn: 'errors',
+      hints: { sourceFiles: true },
       rules: {
         filters: { exclude: ['404.html'] },
         canonical: { self_reference: true },
@@ -72,14 +73,19 @@ export default defineConfig({
           canonical_must_be_in_sitemap: true,
           entries_must_exist_in_dist: true,
         },
-        security: {
-          check_target_blank: true,
-        },
+        security: { check_target_blank: true },
         hreflang: {
           check_hreflang: true,
           require_x_default: true,
           require_self_reference: true,
           require_reciprocal: true,
+        },
+        assets: { check_broken_assets: true },
+        structured_data: { check_json_ld: true },
+        content_quality: {
+          detect_duplicate_titles: true,
+          detect_duplicate_descriptions: true,
+          detect_duplicate_h1: true,
         },
       },
     }),
