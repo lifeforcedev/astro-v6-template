@@ -63,9 +63,9 @@ export default defineConfig({
         },
         a11y: {
           require_skip_link: true,
-          require_img_alt: true,
-          require_button_text: true,
-          require_label: true,
+          img_alt_required: true,
+          button_name_required: true,
+          label_for_required: true,
         },
         links: { check_fragments: true },
         sitemap: {
