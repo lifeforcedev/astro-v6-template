@@ -27,15 +27,17 @@ export async function getStaticPaths() {
 const { post } = Astro.props as Props;
 const { Content } = await render(post);
 const enPath = switchLocalePath(Astro.url.pathname, 'en');
+const title = post.data.titleDe ?? post.data.title;
+const description = post.data.descriptionDe ?? post.data.description;
 
 const links = [{ href: localePath('/', locale), label: tr('nav.home') }];
 ---
 
-<BaseLayout title={post.data.title} description={post.data.description} lang={locale}>
+<BaseLayout title={title} description={description} lang={locale}>
   <PageSEO
     slot="head"
-    title={`${post.data.title} - Astro v6 Blog`}
-    description={post.data.description}
+    title={`${title} - Astro v6 Blog`}
+    description={description}
     ogType="article"
     ogImage={new URL(`/og/blog/${post.id}.png`, Astro.site).href}
     articleAuthor={post.data.author}
@@ -52,7 +54,7 @@ const links = [{ href: localePath('/', locale), label: tr('nav.home') }];
       <time datetime={post.data.date.toISOString()} class="mb-2 block text-sm text-text-secondary">
         {post.data.date.toLocaleDateString('de-DE', { year: 'numeric', month: 'long', day: 'numeric' })}
       </time>
-      <h1 class="mb-2 text-[clamp(1.75rem,4vw,2.5rem)] font-extrabold leading-snug tracking-tight">{post.data.title}</h1>
+      <h1 class="mb-2 text-[clamp(1.75rem,4vw,2.5rem)] font-extrabold leading-snug tracking-tight">{title}</h1>
       <p class="text-[0.9375rem] text-text-secondary">{tr('post.by')} {post.data.author}</p>
       {post.data.tags.length > 0 && (
         <div class="mt-4 flex flex-wrap gap-1">
