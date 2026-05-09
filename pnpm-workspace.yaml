@@ -10,21 +10,21 @@ onlyBuiltDependencies:
 
 catalog:
   # Astro v6 (stable)
-  astro: ^6.3.0
+  astro: ^6.3.1
   "@astrojs/check": ^0.9.9
-  "@astrojs/cloudflare": ^13.4.0
+  "@astrojs/cloudflare": ^13.5.0
   "@astrojs/mdx": ^5.0.4
   "@astrojs/rss": ^4.0.18
   "@astrojs/svelte": ^8.1.0
   "@axe-core/playwright": ^4.11.3
-  "@casoon/astro-post-audit": ^0.2.6
+  "@casoon/astro-post-audit": ^0.2.7
   "@casoon/astro-site-files": ^0.1.5
   "@casoon/astro-speed-measure": ^0.2.0
 
   # Tailwind v4
-  tailwindcss: ^4.2.4
+  tailwindcss: ^4.3.0
   "@tailwindcss/typography": ^0.5.19
-  "@tailwindcss/vite": ^4.2.4
+  "@tailwindcss/vite": ^4.3.0
 
   # Svelte 5
   svelte: ^5.55.5
@@ -43,12 +43,12 @@ catalog:
   sharp: ^0.34.5
 
   # Deployment
-  wrangler: ^4.88.0
+  wrangler: ^4.90.0
 
   # Formatting & Linting (Biome only - no more ESLint/Prettier hybrid)
   "@biomejs/biome": ^2.4.14
   husky: ^9.1.7
-  lint-staged: ^17.0.2
+  lint-staged: ^17.0.3
 
   # Fonts (reduced set)
   "@fontsource/inter": ^5.2.8
