@@ -92,7 +92,7 @@ astro-v6-template/
 ## Prerequisites
 
 - **Node.js** >= 22.12.0
-- **pnpm** >= 9.0.0
+- **pnpm** >= 10.0.0
 
 ## Quick Start
 
@@ -242,7 +242,8 @@ The template ships with comprehensive rules enabled out of the box:
 ```js
 // astro.config.mjs
 postAudit({
-  throwOnError: false,
+  failOn: 'errors',
+  hints: { sourceFiles: true },
   rules: {
     filters: { exclude: ['404.html'] },
     canonical: { self_reference: true },
@@ -272,11 +273,18 @@ postAudit({
       require_self_reference: true,
       require_reciprocal: true,
     },
+    assets: { check_broken_assets: true },
+    structured_data: { check_json_ld: true },
+    content_quality: {
+      detect_duplicate_titles: true,
+      detect_duplicate_descriptions: true,
+      detect_duplicate_h1: true,
+    },
   },
 }),
 ```
 
-Checks include canonical URLs, meta descriptions, Open Graph tags, heading hierarchy, broken links with fragment validation, sitemap cross-referencing, `target="_blank"` security, hreflang reciprocal validation and WCAG heuristics (skip link, alt text, button text, form labels). Set `throwOnError: true` for strict CI enforcement.
+Checks include canonical URLs, meta descriptions, Open Graph tags, heading hierarchy, broken links with fragment validation, sitemap cross-referencing, `target="_blank"` security, hreflang reciprocal validation, WCAG heuristics (skip link, alt text, button text, form labels), broken asset references, JSON-LD validity and duplicate content detection. Use `failOn: 'warnings'` for stricter CI enforcement.
 
 ## Site Files
 
