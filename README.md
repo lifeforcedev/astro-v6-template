@@ -349,6 +349,58 @@ Tests are located in `e2e/starter/a11y.spec.ts` and `e2e/blog/a11y.spec.ts`.
 - **Focus indicators** — Visible focus rings on all interactive elements
 - **Dark mode** — Respects `prefers-color-scheme`, OKLCH colors maintain contrast in both modes
 
+## Deployment
+
+The template ships pre-configured for **Cloudflare Workers** — the default deployment target. All application logic (forms, i18n, routing, SEO) is platform-agnostic. Switching platforms requires only three config changes.
+
+### Cloudflare Workers (default)
+
+No changes needed. Deploy after building:
+
+```bash
+pnpm build:starter
+wrangler deploy --config apps/starter/dist/server/wrangler.json
+
+pnpm build:blog
+cd apps/blog && wrangler deploy
+```
+
+Cloudflare's edge runtime gives you global low-latency SSR out of the box, without managing servers.
+
+### Other platforms (Node.js, Vercel, Netlify, …)
+
+Three config changes per app:
+
+**1. Swap the adapter** in `astro.config.mjs`:
+
+```js
+// Node.js
+import node from '@astrojs/node';
+adapter: node({ mode: 'standalone' })
+
+// Vercel
+import vercel from '@astrojs/vercel';
+adapter: vercel()
+
+// Netlify
+import netlify from '@astrojs/netlify';
+adapter: netlify()
+```
+
+**2. Enable Sharp image optimization** (Sharp runs on Node.js but not on Cloudflare Workers):
+
+```js
+image: {
+  service: {
+    entrypoint: 'astro/assets/services/sharp',
+  },
+},
+```
+
+**3. Delete `wrangler.toml`** — not needed outside of Cloudflare.
+
+Everything else — Astro Actions, contact form, i18n, CSP, post-build audit, sitemap — works identically on every platform.
+
 ## Astro v6 Highlights
 
 This template leverages the key features of Astro v6:
@@ -356,7 +408,6 @@ This template leverages the key features of Astro v6:
 - **Vite Environment API** — Dev server runs in the same runtime as production
 - **Content Collections Loader API** — `glob()` loader instead of legacy `type: 'content'`
 - **Content Security Policy** — Built-in CSP with SHA-256 nonces
-- **Sessions** — Server-side session management (Cloudflare KV)
 - **Astro Actions** — Type-safe server-side form handling
 - **Zod v4** — `z.email()`, `z.url()` as top-level functions
 - **Node 22+** — Minimum requirement
