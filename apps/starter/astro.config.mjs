@@ -9,14 +9,7 @@ import { env } from './src/env.ts';
 
 export default defineConfig({
   site: env.PUBLIC_SITE_URL,
-  adapter: cloudflare({
-    sessionKVBindingName: 'SESSION',
-  }),
-
-  session: {
-    cookie: 'astro-session',
-    ttl: 86400, // 24 hours
-  },
+  adapter: cloudflare(),
 
   i18n: {
     defaultLocale: 'en',

@@ -2,10 +2,6 @@ name = "astro-v6-starter"
 compatibility_date = "2025-12-01"
 compatibility_flags = ["nodejs_compat", "no_handle_cross_request_promise_resolution"]
 
-[[kv_namespaces]]
-binding = "SESSION"
-id = "21fa37fe76934de8afe152b0d032a845"
-
 [assets]
 html_handling = "force-trailing-slash"
 not_found_handling = "404-page"
