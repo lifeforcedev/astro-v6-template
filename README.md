@@ -49,14 +49,13 @@ This template succeeds [astro-v5-template](https://github.com/casoon/astro-v5-te
 
 ## Features
 
-- **Astro v6** — New dev server, Live Content Collections, CSP, Sessions
+- **Astro v6** — New dev server, Live Content Collections, CSP
 - **Tailwind v4** — CSS-first config, Vite plugin, OKLCH colors
 - **Svelte 5** — Runes API ($state, $derived) for reactive islands
 - **i18n** — Multi-language support (en/de) with Astro i18n routing
 - **OG Images** — Auto-generated Open Graph images at build time (Satori + resvg)
 - **Astro Actions** — Server-side form handling (contact, newsletter, feedback)
 - **CSP** — Content Security Policy with SHA-256 nonces
-- **Sessions** — Server-side session management via Cloudflare KV
 - **Build Metrics** — [`@casoon/astro-speed-measure`](https://github.com/casoon/astro-speed-measure) for build performance tracking
 - **Post-Build Audit** — [`@casoon/astro-post-audit`](https://github.com/casoon/astro-post-audit) for SEO, link and WCAG checks after every build
 - **Secret Scanning** — [`@casoon/nosecrets`](https://github.com/casoon/nosecrets) in pre-commit plus manual workspace scans
