@@ -2,6 +2,42 @@ export const defaultLocale = 'en' as const;
 export const locales = ['en', 'de'] as const;
 export type Locale = (typeof locales)[number];
 
+/** Configuration for creating locale-aware utilities */
+export interface I18nConfig {
+  /** The default locale (no URL prefix added) */
+  defaultLocale: string;
+  /** All supported locales */
+  locales: readonly string[];
+}
+
+/** Function that generates locale-prefixed paths */
+export type LocalePathFn = (path: string, locale: string) => string;
+
+/**
+ * Create a configured localePath function.
+ *
+ * Use this when your app has different locales than the default (en/de).
+ * This avoids modifying shared code when adding new locales.
+ *
+ * @example
+ * ```typescript
+ * // For Croatian locale
+ * const localePath = createLocalePath({
+ *   defaultLocale: 'hr',
+ *   locales: ['hr'],
+ * });
+ *
+ * localePath('/contact', 'hr')  // → '/contact'
+ * ```
+ */
+export function createLocalePath(config: I18nConfig): LocalePathFn {
+  return (path: string, locale: string): string => {
+    const clean = path.startsWith('/') ? path : `/${path}`;
+    if (locale === config.defaultLocale) return clean;
+    return `/${locale}${clean}`;
+  };
+}
+
 /** Type-safe translation dictionary */
 export type Translations = Record<string, string>;
 
@@ -21,11 +57,7 @@ export function getLocaleFromPath(pathname: string): Locale {
  * Build a locale-prefixed path.
  * For the default locale, no prefix is added (clean URLs).
  */
-export function localePath(path: string, locale: Locale): string {
-  const clean = path.startsWith('/') ? path : `/${path}`;
-  if (locale === defaultLocale) return clean;
-  return `/${locale}${clean}`;
-}
+export const localePath = createLocalePath({ defaultLocale, locales });
 
 /**
  * Get the alternate path for switching locale.
